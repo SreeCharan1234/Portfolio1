@@ -2,19 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Moon, Sun, Menu, X } from "lucide-react";
-import { useTheme } from "next-themes";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,14 +19,14 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    { name: "Home", href: "/#home" },
-    { name: "About", href: "/#about" },
-    { name: "Experience", href: "/#experience" },
-    { name: "Education", href: "/#education" },
-    { name: "Skills", href: "/#skills" },
-    { name: "Projects", href: "/#projects" },
-    { name: "Hackathons", href: "/#hackathons" },
-    { name: "Contact", href: "/#contact" },
+    { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
+    { name: "Experience", href: "#experience" },
+    { name: "Education", href: "#education" },
+    { name: "Skills", href: "#skills" },
+    { name: "Projects", href: "#projects" },
+    { name: "Hackathons", href: "#hackathons" },
+    { name: "Contact", href: "#contact" },
   ];
 
   return (
@@ -51,9 +44,14 @@ const Navbar = () => {
           {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="text-xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent"
+            className="text-xl font-bold"
           >
-            <Link href="/#home">K Sree Charan</Link>
+            <Link 
+              href="/#home"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent hover:from-blue-700 hover:to-purple-700 dark:hover:from-blue-300 dark:hover:to-purple-300 transition-all duration-200"
+            >
+              K Sree Charan
+            </Link>
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -75,26 +73,8 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Theme toggle and mobile menu button */}
-          <div className="flex items-center space-x-4">
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="p-2 rounded-lg bg-muted hover:bg-muted/80 transition-colors"
-            >
-              {mounted ? (
-                theme === "dark" ? (
-                  <Sun className="h-4 w-4" />
-                ) : (
-                  <Moon className="h-4 w-4" />
-                )
-              ) : (
-                <div className="h-4 w-4" />
-              )}
-            </motion.button>
-
-            {/* Mobile menu button */}
+          {/* Mobile menu button */}
+          <div className="flex items-center">
             <div className="md:hidden">
               <motion.button
                 whileHover={{ scale: 1.1 }}

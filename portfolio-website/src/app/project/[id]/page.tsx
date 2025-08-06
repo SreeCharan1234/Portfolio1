@@ -259,29 +259,32 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-background">
       {/* Header */}
-      <div className="bg-muted/50 border-b border-border/50">
+      <div className="bg-gradient-to-r from-muted/50 via-muted/70 to-muted/50 border-b border-border/50 pt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <Link
-            href="/#projects"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-6"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to Projects
-          </Link>
+          <div className="flex items-center justify-between mb-6">
+            <Link
+              href="/#projects"
+              className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Back to Projects
+            </Link>
+            
+            <div className="flex items-center gap-4">
+              <span className="px-3 py-1 bg-gradient-to-r from-primary to-purple-600 text-white text-sm rounded-full shadow-lg">
+                {project.category}
+              </span>
+            </div>
+          </div>
           
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="flex items-center gap-4 mb-4">
-              <h1 className="text-4xl md:text-5xl font-bold">{project.title}</h1>
-              <span className="px-3 py-1 bg-primary text-primary-foreground text-sm rounded-full">
-                {project.category}
-              </span>
-            </div>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">{project.title}</h1>
             <p className="text-xl text-muted-foreground max-w-3xl">
               {project.description}
             </p>
@@ -299,8 +302,9 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
+              className="p-6 rounded-lg bg-gradient-to-tl from-card via-card/80 to-muted/30 border border-border/50 shadow-lg"
             >
-              <h2 className="text-2xl font-bold mb-4">About This Project</h2>
+              <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">About This Project</h2>
               <p className="text-muted-foreground leading-relaxed">
                 {project.fullDescription}
               </p>
@@ -311,8 +315,9 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
+              className="p-6 rounded-lg bg-gradient-to-tr from-muted/20 via-card to-muted/40 border border-border/50 shadow-lg"
             >
-              <h2 className="text-2xl font-bold mb-6">Key Features</h2>
+              <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">Key Features</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {project.features.map((feature, index) => (
                   <motion.div
@@ -320,7 +325,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6, delay: 0.1 * index }}
-                    className="flex items-start gap-3 p-4 bg-muted/50 rounded-lg border border-border/50"
+                    className="flex items-start gap-3 p-4 card-3d rounded-lg bg-gradient-to-br from-card to-muted/30"
                   >
                     <Star className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                     <span className="text-sm">{feature}</span>
@@ -334,8 +339,9 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
+              className="p-6 rounded-lg bg-gradient-to-bl from-card via-muted/20 to-card border border-border/50 shadow-lg"
             >
-              <h2 className="text-2xl font-bold mb-6">Technologies Used</h2>
+              <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Technologies Used</h2>
               <div className="flex flex-wrap gap-3">
                 {project.technologies.map((tech, index) => (
                   <motion.span
@@ -343,7 +349,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6, delay: 0.05 * index }}
-                    className="px-4 py-2 bg-background border border-border rounded-lg text-sm font-medium"
+                    className="px-4 py-2 card-3d rounded-lg text-sm font-medium bg-gradient-to-r from-primary/10 to-purple-600/10 border border-primary/20"
                   >
                     {tech}
                   </motion.span>
@@ -359,9 +365,9 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="bg-background border border-border/50 rounded-lg p-6 shadow-lg"
+              className="p-6 rounded-lg bg-gradient-to-br from-muted/30 via-card to-muted/50 border border-border/50 shadow-lg"
             >
-              <h3 className="text-lg font-bold mb-4">All Screenshots</h3>
+              <h3 className="text-lg font-bold mb-4 bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">All Screenshots</h3>
               <div className="space-y-3">
                 {project.images.map((image, index) => (
                   <motion.div
@@ -370,7 +376,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     whileHover={{ scale: 1.02 }}
-                    className="relative aspect-video rounded-lg overflow-hidden border border-border/50 shadow-sm"
+                    className="relative aspect-video rounded-lg overflow-hidden border border-border/50 shadow-sm bg-gradient-to-br from-card to-muted/20"
                   >
                     <Image
                       src={image}
@@ -388,15 +394,15 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-background border border-border/50 rounded-lg p-6 shadow-lg"
+              className="p-6 rounded-lg bg-gradient-to-tl from-card via-muted/20 to-card border border-border/50 shadow-lg"
             >
-              <h3 className="text-lg font-bold mb-4">Project Info</h3>
+              <h3 className="text-lg font-bold mb-4 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">Project Info</h3>
               <div className="space-y-3">
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-muted/30 to-card border border-border/30">
                   <Calendar className="h-4 w-4 text-muted-foreground" />
                   <span className="text-sm">Timeline: {project.timeline}</span>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-card to-muted/30 border border-border/30">
                   <Users className="h-4 w-4 text-muted-foreground" />
                   <span className="text-sm">Team: {project.team}</span>
                 </div>
@@ -408,13 +414,13 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-background border border-border/50 rounded-lg p-6 shadow-lg"
+              className="p-6 rounded-lg bg-gradient-to-tr from-muted/40 via-card to-muted/20 border border-border/50 shadow-lg"
             >
-              <h3 className="text-lg font-bold mb-4">Key Highlights</h3>
+              <h3 className="text-lg font-bold mb-4 bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">Key Highlights</h3>
               <div className="space-y-3">
                 {project.highlights.map((highlight, index) => (
-                  <div key={index} className="flex items-start gap-2">
-                    <Star className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                  <div key={index} className="flex items-start gap-2 p-3 rounded-lg bg-gradient-to-r from-emerald-50/50 to-teal-50/50 dark:from-emerald-950/30 dark:to-teal-950/30 border border-emerald-200/30 dark:border-emerald-800/30">
+                    <Star className="h-4 w-4 text-emerald-600 mt-0.5 flex-shrink-0" />
                     <span className="text-sm text-muted-foreground">{highlight}</span>
                   </div>
                 ))}
@@ -426,7 +432,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="space-y-3"
+              className="space-y-3 p-4 rounded-lg bg-gradient-to-bl from-card via-muted/30 to-card border border-border/50 shadow-lg"
             >
               <motion.a
                 href={project.liveDemo}
@@ -434,7 +440,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
+                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2 shadow-lg"
               >
                 <ExternalLink className="h-4 w-4" />
                 Live Demo
@@ -445,7 +451,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-full border border-border hover:bg-muted px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
+                className="w-full card-3d hover:bg-muted/30 px-6 py-3 rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2"
               >
                 <Github className="h-4 w-4" />
                 View Code

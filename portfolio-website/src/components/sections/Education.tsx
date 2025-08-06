@@ -1,54 +1,70 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GraduationCap, Calendar, MapPin, Award } from "lucide-react";
+import { Calendar, MapPin, Award, BookOpen } from "lucide-react";
 
 const Education = () => {
   const education = [
     {
       degree: "Bachelor of Technology",
-      field: "Computer Science and Engineering",
-      institution: "Lovely Professional University",
-      location: "Punjab, India",
+      field: "Computer Science Engineering",
+      institution: "Your University Name",
+      location: "Your City, India",
       period: "2020 - 2024",
-      grade: "8.5 CGPA",
-      description: [
-        "Specialized in Software Engineering and Web Development",
-        "Completed coursework in Data Structures, Algorithms, and Database Systems",
-        "Participated in various technical projects and competitions",
-        "Active member of coding clubs and technical societies"
-      ],
+      grade: "9.0 CGPA",
+      description: "Focused on software engineering, data structures, algorithms, and web development. Completed projects on AI/ML and full-stack development.",
       achievements: [
         "Dean's List for Academic Excellence",
-        "Winner of multiple hackathons",
-        "Technical lead for college projects"
+        "President of Computer Science Club",
+        "Winner of Inter-College Coding Competition",
+        "Published research paper on Web Technologies"
       ]
     },
     {
-      degree: "Higher Secondary Education",
+      degree: "Senior Secondary (12th)",
       field: "Science (PCM)",
-      institution: "Intermediate College",
-      location: "India",
+      institution: "Your School Name",
+      location: "Your City, India", 
       period: "2018 - 2020",
-      grade: "85%",
-      description: [
-        "Focused on Mathematics, Physics, and Chemistry",
-        "Developed strong analytical and problem-solving skills",
-        "Participated in science exhibitions and competitions"
+      grade: "94.82%",
+      description: "Specialized in Mathematics, Physics, and Chemistry with computer science as an additional subject.",
+      achievements: [
+        "School Topper in Computer Science",
+        "State Level Mathematics Olympiad Participant",
+        "Science Club Secretary"
       ]
     }
   ];
 
   const certifications = [
-    "AWS Certified Developer Associate",
-    "MongoDB Certified Developer",
-    "React Professional Certification",
-    "Full Stack Web Development",
-    "Agile Development Methodologies"
+    {
+      name: "AWS Cloud Practitioner",
+      issuer: "Amazon Web Services",
+      date: "2024",
+      id: "AWS-CCP-12345"
+    },
+    {
+      name: "React Developer Certification",
+      issuer: "Meta (Facebook)",
+      date: "2024",
+      id: "META-REACT-789"
+    },
+    {
+      name: "Python for Data Science",
+      issuer: "IBM",
+      date: "2023",
+      id: "IBM-PY-456"
+    },
+    {
+      name: "Full Stack Web Development",
+      issuer: "Coursera",
+      date: "2023",
+      id: "COURSERA-FS-321"
+    }
   ];
 
   return (
-    <section id="education" className="py-20 bg-muted/50">
+    <section id="education" className="py-20 bg-gradient-to-br from-background via-muted/20 to-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -57,107 +73,134 @@ const Education = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Education</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+            Education & Certifications
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             My academic background and continuous learning journey in technology and software development.
           </p>
         </motion.div>
 
-        {/* Education Timeline */}
-        <div className="space-y-8 mb-16">
-          {education.map((edu, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              viewport={{ once: true }}
-              className="bg-background border border-border/50 rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow"
-            >
-              <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6">
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-2">
-                    <GraduationCap className="h-5 w-5 text-primary" />
-                    <h3 className="text-xl font-bold">{edu.degree}</h3>
-                  </div>
-                  <h4 className="text-lg font-semibold text-primary mb-2">{edu.field}</h4>
-                  <h5 className="text-lg text-muted-foreground mb-2">{edu.institution}</h5>
-                  <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-4">
-                    <div className="flex items-center gap-1">
-                      <Calendar className="h-4 w-4" />
-                      {edu.period}
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <MapPin className="h-4 w-4" />
-                      {edu.location}
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Award className="h-4 w-4" />
-                      {edu.grade}
-                    </div>
-                  </div>
-                </div>
+        {/* Two Column Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Education Column */}
+          <div className="space-y-6">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-2 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 text-white">
+                <BookOpen className="h-6 w-6" />
               </div>
+              <h3 className="text-2xl font-bold">Education</h3>
+            </div>
 
-              <div className="space-y-4">
-                <div>
-                  <h6 className="font-semibold mb-2">Key Areas of Study:</h6>
-                  <ul className="space-y-1">
-                    {edu.description.map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-muted-foreground text-sm">
-                        <span className="h-1.5 w-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {edu.achievements && (
-                  <div className="pt-4 border-t border-border/50">
-                    <h6 className="font-semibold mb-2">Achievements:</h6>
-                    <div className="flex flex-wrap gap-2">
-                      {edu.achievements.map((achievement, achIdx) => (
-                        <span
-                          key={achIdx}
-                          className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full border border-primary/20"
-                        >
-                          {achievement}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Certifications */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="bg-background border border-border/50 rounded-lg p-8 shadow-lg"
-        >
-          <h3 className="text-2xl font-bold mb-6 text-center">Certifications & Courses</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {certifications.map((cert, index) => (
+            {education.map((edu, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                whileHover={{ scale: 1.05 }}
-                className="bg-muted p-4 rounded-lg text-center border border-border/50 hover:border-primary/50 transition-colors"
+                className="p-6 rounded-lg bg-gradient-to-br from-blue-50/50 via-card to-purple-50/50 dark:from-blue-950/20 dark:via-card dark:to-purple-950/20 border border-border/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
               >
-                <Award className="h-6 w-6 text-primary mx-auto mb-2" />
-                <p className="font-medium text-sm">{cert}</p>
+                <div className="mb-4">
+                  <h4 className="text-xl font-bold text-foreground mb-1">{edu.degree}</h4>
+                  <h5 className="text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-1">
+                    {edu.field}
+                  </h5>
+                  <h6 className="text-muted-foreground font-medium">{edu.institution}</h6>
+                </div>
+
+                <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-4">
+                  <div className="flex items-center gap-1 px-2 py-1 bg-muted/30 rounded-full">
+                    <Calendar className="h-3 w-3" />
+                    {edu.period}
+                  </div>
+                  <div className="flex items-center gap-1 px-2 py-1 bg-muted/30 rounded-full">
+                    <MapPin className="h-3 w-3" />
+                    {edu.location}
+                  </div>
+                  <div className="flex items-center gap-1 px-2 py-1 bg-blue-100 dark:bg-blue-950/30 text-blue-700 dark:text-blue-300 rounded-full">
+                    <Award className="h-3 w-3" />
+                    {edu.grade}
+                  </div>
+                </div>
+
+                <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
+                  {edu.description}
+                </p>
+
+                <div>
+                  <h6 className="font-semibold text-sm mb-2">Key Achievements:</h6>
+                  <div className="space-y-1">
+                    {edu.achievements.map((achievement, achIdx) => (
+                      <div key={achIdx} className="flex items-start gap-2">
+                        <span className="h-1.5 w-1.5 bg-blue-600 rounded-full mt-2 flex-shrink-0"></span>
+                        <span className="text-sm text-muted-foreground">{achievement}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
-        </motion.div>
+
+          {/* Certifications Column */}
+          <div className="space-y-6">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-2 rounded-lg bg-gradient-to-r from-green-500 to-teal-600 text-white">
+                <Award className="h-6 w-6" />
+              </div>
+              <h3 className="text-2xl font-bold">Certifications</h3>
+            </div>
+
+            {certifications.map((cert, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+                viewport={{ once: true }}
+                className="p-6 rounded-lg bg-gradient-to-bl from-green-50/50 via-card to-teal-50/50 dark:from-green-950/20 dark:via-card dark:to-teal-950/20 border border-border/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              >
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex-1">
+                    <h4 className="text-lg font-bold text-foreground mb-1">{cert.name}</h4>
+                    <p className="text-muted-foreground font-medium">{cert.issuer}</p>
+                  </div>
+                  <div className="flex items-center gap-1 px-2 py-1 bg-green-100 dark:bg-green-950/30 text-green-700 dark:text-green-300 rounded-full text-xs">
+                    <Calendar className="h-3 w-3" />
+                    {cert.date}
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                  <Award className="h-3 w-3" />
+                  <span className="font-mono bg-muted/50 px-2 py-1 rounded">ID: {cert.id}</span>
+                </div>
+              </motion.div>
+            ))}
+
+            {/* Additional Skills Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="p-6 rounded-lg bg-gradient-to-tr from-orange-50/50 via-card to-red-50/50 dark:from-orange-950/20 dark:via-card dark:to-red-950/20 border border-border/50 shadow-lg"
+            >
+              <h4 className="text-lg font-bold mb-4 bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+                Additional Skills
+              </h4>
+              <div className="grid grid-cols-2 gap-2">
+                {["Problem Solving", "Team Leadership", "Project Management", "Technical Writing"].map((skill, idx) => (
+                  <div key={idx} className="flex items-center gap-2 text-sm">
+                    <span className="h-1.5 w-1.5 bg-orange-600 rounded-full"></span>
+                    <span className="text-muted-foreground">{skill}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );

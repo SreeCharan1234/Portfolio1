@@ -58,60 +58,6 @@ const Hackathons = () => {
       ]
     },
     {
-      id: "web-a-thon", 
-      name: "Web-a-Thon by OnDemand",
-      title: "3rd Place – Web-a-Thon by OnDemand",
-      position: "3rd Place",
-      description: "Secured 3rd place in Web-a-Thon by OnDemand with a prize of ₹50,000. 24 hours of problem-solving focused on AI-driven agents for real-world healthcare challenges.",
-      image: "/assets/images/hackathons/other/main.jpg",
-      date: "2023",
-      location: "OnDemand Platform",
-      team: "4 members",
-      technologies: ["React", "Node.js", "AI/ML", "Healthcare APIs", "Python"],
-      achievements: [
-        "3rd Place Winner",
-        "₹50,000 Prize Money",
-        "AI Innovation in Healthcare",
-        "24-hour coding marathon completion"
-      ]
-    },
-    {
-      id: "team-binary-five",
-      name: "Team Binary Five",
-      title: "Winner – Team Binary Five (Smart Device Platform)",
-      position: "Winner",
-      description: "Winner of Team Binary Five challenge focused on Smart Device Platform with a prize of ₹10,000 + Trophy.",
-      image: "/assets/images/hackathons/other/main.jpg",
-      date: "2023",
-      location: "University Competition",
-      team: "5 members",
-      technologies: ["AI/ML", "Face Recognition", "WebRTC", "IoT", "React"],
-      achievements: [
-        "Winner - 1st Place",
-        "₹10,000 Prize Money",
-        "Trophy and certificates",
-        "Smart platform innovation"
-      ]
-    },
-    {
-      id: "adobe-gensolve",
-      name: "Adobe GenSolve Hackathon",
-      title: "Top 5 Percentile – Adobe GenSolve Hackathon",
-      position: "Top 5 Percentile",
-      description: "Achieved Top 5 Percentile in Adobe GenSolve Hackathon organized by Adobe & GeeksforGeeks. Recognition for innovation, teamwork, and strong performance.",
-      image: "/assets/images/hackathons/other/main.jpg",
-      date: "2023",
-      location: "Adobe & GeeksforGeeks Platform",
-      team: "2 members",
-      technologies: ["Adobe Tools", "Creative Technologies", "Problem Solving"],
-      achievements: [
-        "Top 5 Percentile",
-        "Innovation Excellence", 
-        "Teamwork Recognition",
-        "Strong Performance Award"
-      ]
-    },
-    {
       id: "build-a-thon",
       name: "Build-a-thon",
       title: "Rapid Prototyping Challenge",
@@ -208,10 +154,29 @@ const Hackathons = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Hackathons & Competitions</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <motion.h2 
+            className="text-3xl md:text-4xl font-bold mb-4 cursor-default"
+            whileHover={{ 
+              scale: 1.05,
+              backgroundImage: "linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899, #f59e0b)",
+              backgroundClip: "text",
+              color: "transparent",
+              textShadow: "0 0 30px rgba(59, 130, 246, 0.5)"
+            }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
+            Hackathons & Competitions
+          </motion.h2>
+          <motion.p 
+            className="text-muted-foreground max-w-2xl mx-auto cursor-default"
+            whileHover={{ 
+              scale: 1.02,
+              color: "#6366f1"
+            }}
+            transition={{ duration: 0.3 }}
+          >
             My journey through various hackathons and competitive programming events, showcasing innovation and problem-solving skills.
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Statistics */}
@@ -222,26 +187,90 @@ const Hackathons = () => {
           viewport={{ once: true }}
           className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 text-center"
         >
-          <div className="bg-background border border-border/50 rounded-lg p-6 shadow-lg">
-            <Trophy className="h-8 w-8 text-primary mx-auto mb-2" />
-            <h3 className="text-2xl font-bold text-primary">8+</h3>
+          <motion.div 
+            className="bg-background border border-border/50 rounded-lg p-6 shadow-lg cursor-default"
+            whileHover={{ 
+              scale: 1.05, 
+              borderColor: "#3b82f6",
+              boxShadow: "0 10px 25px rgba(59, 130, 246, 0.2)",
+              y: -5
+            }}
+            transition={{ duration: 0.3 }}
+          >
+            <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.5 }}>
+              <Trophy className="h-8 w-8 text-primary mx-auto mb-2" />
+            </motion.div>
+            <motion.h3 
+              className="text-2xl font-bold text-primary"
+              whileHover={{ scale: 1.1, color: "#3b82f6" }}
+            >
+              8+
+            </motion.h3>
             <p className="text-muted-foreground text-sm">Hackathons</p>
-          </div>
-          <div className="bg-background border border-border/50 rounded-lg p-6 shadow-lg">
-            <Award className="h-8 w-8 text-primary mx-auto mb-2" />
-            <h3 className="text-2xl font-bold text-primary">5</h3>
+          </motion.div>
+          <motion.div 
+            className="bg-background border border-border/50 rounded-lg p-6 shadow-lg cursor-default"
+            whileHover={{ 
+              scale: 1.05, 
+              borderColor: "#10b981",
+              boxShadow: "0 10px 25px rgba(16, 185, 129, 0.2)",
+              y: -5
+            }}
+            transition={{ duration: 0.3 }}
+          >
+            <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.5 }}>
+              <Award className="h-8 w-8 text-primary mx-auto mb-2" />
+            </motion.div>
+            <motion.h3 
+              className="text-2xl font-bold text-primary"
+              whileHover={{ scale: 1.1, color: "#10b981" }}
+            >
+              5
+            </motion.h3>
             <p className="text-muted-foreground text-sm">Wins/Top Places</p>
-          </div>
-          <div className="bg-background border border-border/50 rounded-lg p-6 shadow-lg">
-            <Users className="h-8 w-8 text-primary mx-auto mb-2" />
-            <h3 className="text-2xl font-bold text-primary">20+</h3>
+          </motion.div>
+          <motion.div 
+            className="bg-background border border-border/50 rounded-lg p-6 shadow-lg cursor-default"
+            whileHover={{ 
+              scale: 1.05, 
+              borderColor: "#8b5cf6",
+              boxShadow: "0 10px 25px rgba(139, 92, 246, 0.2)",
+              y: -5
+            }}
+            transition={{ duration: 0.3 }}
+          >
+            <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.5 }}>
+              <Users className="h-8 w-8 text-primary mx-auto mb-2" />
+            </motion.div>
+            <motion.h3 
+              className="text-2xl font-bold text-primary"
+              whileHover={{ scale: 1.1, color: "#8b5cf6" }}
+            >
+              20+
+            </motion.h3>
             <p className="text-muted-foreground text-sm">Team Members</p>
-          </div>
-          <div className="bg-background border border-border/50 rounded-lg p-6 shadow-lg">
-            <Calendar className="h-8 w-8 text-primary mx-auto mb-2" />
-            <h3 className="text-2xl font-bold text-primary">2</h3>
+          </motion.div>
+          <motion.div 
+            className="bg-background border border-border/50 rounded-lg p-6 shadow-lg cursor-default"
+            whileHover={{ 
+              scale: 1.05, 
+              borderColor: "#ec4899",
+              boxShadow: "0 10px 25px rgba(236, 72, 153, 0.2)",
+              y: -5
+            }}
+            transition={{ duration: 0.3 }}
+          >
+            <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.5 }}>
+              <Calendar className="h-8 w-8 text-primary mx-auto mb-2" />
+            </motion.div>
+            <motion.h3 
+              className="text-2xl font-bold text-primary"
+              whileHover={{ scale: 1.1, color: "#ec4899" }}
+            >
+              2
+            </motion.h3>
             <p className="text-muted-foreground text-sm">Years Active</p>
-          </div>
+          </motion.div>
         </motion.div>
 
         {/* Hackathons Grid */}

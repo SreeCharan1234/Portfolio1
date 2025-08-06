@@ -322,33 +322,30 @@ export default function HackathonDetail({ params }: { params: Promise<{ id: stri
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <div className="bg-muted/50 border-b border-border/50">
+      <div className="bg-muted/50 border-b border-border/50 pt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-6"
-            onClick={() => {
-              setTimeout(() => {
-                document.getElementById('hackathons')?.scrollIntoView({ behavior: 'smooth' });
-              }, 100);
-            }}
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to Hackathons
-          </Link>
+          <div className="flex items-center justify-between mb-6">
+            <Link
+              href="/#hackathons"
+              className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Back to Hackathons
+            </Link>
+            
+            <div className="flex items-center gap-4">
+              <span className="px-3 py-1 bg-primary text-primary-foreground text-sm rounded-full font-semibold">
+                {hackathon.position}
+              </span>
+            </div>
+          </div>
           
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="flex items-center gap-4 mb-4">
-              <h1 className="text-4xl md:text-5xl font-bold">{hackathon.name}</h1>
-              <span className="px-3 py-1 bg-primary text-primary-foreground text-sm rounded-full font-semibold">
-                {hackathon.position}
-              </span>
-            </div>
-            <h2 className="text-2xl text-primary font-semibold mb-4">{hackathon.title}</h2>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">{hackathon.name}</h1>
             <p className="text-xl text-muted-foreground max-w-3xl">
               {hackathon.description}
             </p>

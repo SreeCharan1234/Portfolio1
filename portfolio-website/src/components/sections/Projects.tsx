@@ -140,10 +140,29 @@ const Projects = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Projects</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <motion.h2 
+            className="text-3xl md:text-4xl font-bold mb-4 cursor-default"
+            whileHover={{ 
+              scale: 1.05,
+              backgroundImage: "linear-gradient(45deg, #10b981, #3b82f6, #8b5cf6, #ec4899)",
+              backgroundClip: "text",
+              color: "transparent",
+              textShadow: "0 0 30px rgba(16, 185, 129, 0.5)"
+            }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
+            Projects
+          </motion.h2>
+          <motion.p 
+            className="text-muted-foreground max-w-2xl mx-auto cursor-default"
+            whileHover={{ 
+              scale: 1.02,
+              color: "#10b981"
+            }}
+            transition={{ duration: 0.3 }}
+          >
             A showcase of my work including full-stack applications, machine learning projects, and innovative solutions.
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Category Filter */}
