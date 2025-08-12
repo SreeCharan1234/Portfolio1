@@ -8,14 +8,13 @@ const Education = () => {
     {
       degree: "Bachelor of Technology",
       field: "Computer Science Engineering",
-      institution: "Your University Name",
-      location: "Your City, India",
-      period: "2020 - 2024",
-      grade: "9.0 CGPA",
+      institution: "Lovely Professional University",
+      location: "Punjab, India",
+      period: "2022 - 2026",
+      grade: "8.0 CGPA",
       description: "Focused on software engineering, data structures, algorithms, and web development. Completed projects on AI/ML and full-stack development.",
       achievements: [
         "Dean's List for Academic Excellence",
-        "President of Computer Science Club",
         "Winner of Inter-College Coding Competition",
         "Published research paper on Web Technologies"
       ]
@@ -23,31 +22,34 @@ const Education = () => {
     {
       degree: "Senior Secondary (12th)",
       field: "Science (PCM)",
-      institution: "Your School Name",
-      location: "Your City, India", 
+      institution: "kendriya vidyalaya",
+      location: "Delhi, India",
       period: "2018 - 2020",
-      grade: "94.82%",
+      grade: "80.82%",
       description: "Specialized in Mathematics, Physics, and Chemistry with computer science as an additional subject.",
       achievements: [
         "School Topper in Computer Science",
         "State Level Mathematics Olympiad Participant",
-        "Science Club Secretary"
       ]
     }
   ];
 
   const certifications = [
     {
-      name: "AWS Cloud Practitioner",
-      issuer: "Amazon Web Services",
+      name: "LeetCode Problem Solving",
+      issuer: "LeetCode",
       date: "2024",
-      id: "AWS-CCP-12345"
+      id: "LC-SOLVER-500+",
+      description: "Solved 500+ coding problems across various difficulty levels",
+      badge: "Knight (1800+ rating)"
     },
     {
-      name: "React Developer Certification",
-      issuer: "Meta (Facebook)",
+      name: "Data Structures & Algorithms",
+      issuer: "LeetCode Premium",
       date: "2024",
-      id: "META-REACT-789"
+      id: "LC-DSA-MASTER",
+      description: "Mastered advanced algorithms and data structure patterns",
+      badge: "Algorithm Specialist"
     },
     {
       name: "Python for Data Science",
@@ -165,12 +167,25 @@ const Education = () => {
                   <div className="flex-1">
                     <h4 className="text-lg font-bold text-foreground mb-1">{cert.name}</h4>
                     <p className="text-muted-foreground font-medium">{cert.issuer}</p>
+                    {cert.badge && (
+                      <div className="mt-2">
+                        <span className="inline-block px-3 py-1 bg-gradient-to-r from-yellow-100 to-orange-100 dark:from-yellow-900/30 dark:to-orange-900/30 text-yellow-700 dark:text-yellow-300 text-xs font-semibold rounded-full border border-yellow-200 dark:border-yellow-800">
+                          🏆 {cert.badge}
+                        </span>
+                      </div>
+                    )}
                   </div>
                   <div className="flex items-center gap-1 px-2 py-1 bg-green-100 dark:bg-green-950/30 text-green-700 dark:text-green-300 rounded-full text-xs">
                     <Calendar className="h-3 w-3" />
                     {cert.date}
                   </div>
                 </div>
+
+                {cert.description && (
+                  <p className="text-sm text-muted-foreground mb-3 leading-relaxed">
+                    {cert.description}
+                  </p>
+                )}
 
                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
                   <Award className="h-3 w-3" />
