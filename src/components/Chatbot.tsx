@@ -190,9 +190,8 @@ ${hackathon.members ? `Team Members: ${hackathon.members.join(", ")}` : ""}`,
         // Direct handling for Sarthi project
         const sarthiProject = sreeData.projects.find(p => p.name.toLowerCase() === "sarthi");
         if (sarthiProject) {
-          const formattedImages = sarthiProject.Project_photo.slice(0, 2).map(img => 
-            img.startsWith('/') ? img : `/assets/images/${img}`
-          );
+          // Use the formatImagePath helper for consistent image handling
+          const formattedImages = sarthiProject.Project_photo.slice(0, 2).map(img => formatImagePath(img));
           
           response = `Sarthi is a ${sarthiProject.category} project. ${sarthiProject.description}
           
