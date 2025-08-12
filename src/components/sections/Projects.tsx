@@ -4,9 +4,31 @@ import { motion } from "framer-motion";
 import { ExternalLink, Github, Calendar, Users } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
+import sreeData from "@/data/sree.json";
+
+// Helper function to get project data from JSON
+const getProjectDataFromJSON = (projectId: string) => {
+  const projectMappings: { [key: string]: string } = {
+    "agrivision": "AgriVision",
+    "health-buddy": "Health Buddy", 
+    "study-buddy": "Study Buddy",
+    "sarthi": "Sarthi",
+    "suraksha-suchak": "Suraksha Suchak",
+    "code-off-duty": "Code Off Duty"
+  };
+  
+  const projectName = projectMappings[projectId];
+  if (!projectName) return null;
+  
+  return sreeData.projects.find(project => 
+    project.name.toLowerCase().includes(projectName.toLowerCase()) ||
+    project.name.toLowerCase() === projectName.toLowerCase()
+  );
+};
 
 const Projects = () => {
-  const projects = [
+  // Base projects structure with hardcoded data as fallback
+  const baseProjects = [
     {
       id: "agrivision",
       title: "AgriVision",
@@ -122,6 +144,16 @@ const Projects = () => {
       team: "3 members"
     }
   ];
+
+  // Enhanced projects with JSON data integration
+  const projects = baseProjects.map(project => {
+    const jsonData = getProjectDataFromJSON(project.id);
+    return {
+      ...project,
+      liveDemo: jsonData?.liveDemo || jsonData?.deploymentLink || project.liveDemo,
+      github: jsonData?.githubLink || project.github
+    };
+  });
 
   const categories = ["All", "Full Stack", "Healthcare", "Education", "Logistics", "Security", "EdTech"];
   const [selectedCategory, setSelectedCategory] = useState("All");

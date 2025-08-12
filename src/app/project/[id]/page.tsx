@@ -12,7 +12,7 @@ import sreeData from "@/data/sree.json";
 const getProjectFromJSON = (id: string) => {
   const projectMappings: { [key: string]: string } = {
     "agrivision": "AgriVision",
-    "health-buddy": "Health Buddy",
+    "health-buddy": "Health Buddy", 
     "study-buddy": "Study Buddy",
     "sarthi": "Sarthi",
     "suraksha-suchak": "Suraksha Suchak",
@@ -20,11 +20,18 @@ const getProjectFromJSON = (id: string) => {
   };
   
   const projectName = projectMappings[id];
-  if (!projectName) return null;
+  if (!projectName) {
+    console.log('No mapping found for project ID:', id);
+    return null;
+  }
   
-  return sreeData.projects.find(project => 
-    project.name.toLowerCase().includes(projectName.toLowerCase())
+  const foundProject = sreeData.projects.find(project => 
+    project.name.toLowerCase().includes(projectName.toLowerCase()) ||
+    project.name.toLowerCase() === projectName.toLowerCase()
   );
+  
+  console.log('Looking for project:', projectName, 'Found:', foundProject?.name);
+  return foundProject;
 };
 
 // Project data with all images and details
@@ -273,10 +280,26 @@ const projectsData = {
 export default function ProjectDetail({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params);
   const project = projectsData[resolvedParams.id as keyof typeof projectsData];
+  const jsonProject = getProjectFromJSON(resolvedParams.id);
 
   if (!project) {
     notFound();
   }
+
+  // Use JSON data if available, otherwise fallback to hardcoded data
+  const projectData = {
+    ...project,
+    liveDemo: jsonProject?.liveDemo || jsonProject?.deploymentLink || project.liveDemo || '#',
+    github: jsonProject?.githubLink || project.github || '#',
+    images: jsonProject?.Project_photo?.map((photo: string) => 
+      photo.startsWith('/assets') ? photo : `/assets/images/${photo}`
+    ) || project.images
+  };
+
+  // Debug logging to check if JSON data is loaded correctly
+  console.log('Project ID:', resolvedParams.id);
+  console.log('JSON Project:', jsonProject);
+  console.log('Final Project Data:', projectData);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-background">
@@ -389,7 +412,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
             >
               <h3 className="text-lg font-bold mb-4 bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">All Screenshots</h3>
               <div className="space-y-3">
-                {project.images.map((image, index) => (
+                {projectData.images.map((image, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, scale: 0.9 }}
@@ -455,7 +478,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
               className="space-y-3 p-4 rounded-lg bg-gradient-to-bl from-card via-muted/30 to-card border border-border/50 shadow-lg"
             >
               <motion.a
-                href={project.liveDemo}
+                href={projectData.liveDemo}
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
@@ -466,7 +489,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                 Live Demo
               </motion.a>
               <motion.a
-                href={project.github}
+                href={projectData.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
