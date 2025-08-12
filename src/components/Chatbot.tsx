@@ -48,12 +48,12 @@ const Chatbot = () => {
 🔧 Technologies: ${project.technologies.join(", ")}
 ✨ Features: ${project.features.join(", ")}
 
-🤝 Team Members: ${project.members ? project.members.join(", ") : "Not specified"}`,
-        images: project.projectPhotos.slice(0, 2),
-        teamMembers: project.members && project.memberProfilePhotos && project.memberLinkedinUrls ? {
-          names: project.members,
-          photos: project.memberProfilePhotos,
-          linkedinUrls: project.memberLinkedinUrls
+🤝 Team Members: ${project.Members ? project.Members.join(", ") : "Not specified"}`,
+        images: project.Project_photo.slice(0, 2),
+        teamMembers: project.Members && project.member_profile_photos && project.member_linkedin_urls ? {
+          names: project.Members,
+          photos: project.member_profile_photos,
+          linkedinUrls: project.member_linkedin_urls
         } : undefined
       };
     }
@@ -75,7 +75,7 @@ Team Size: ${hackathon.teamSize}
 Technologies: ${hackathon.technologies.join(", ")}
 Awards: ${hackathon.awards.join(", ")}
 ${hackathon.members ? `Team Members: ${hackathon.members.join(", ")}` : ""}`,
-        images: hackathon.eventPhotos.slice(0, 2)
+        images: hackathon.event_photos.slice(0, 2)
       };
     }
     return null;
