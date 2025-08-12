@@ -96,16 +96,32 @@ const Chatbot = () => {
     return null;
   };
 
+  // Function to ensure image paths are correctly formatted
+  const formatImagePath = (imgPath: string) => {
+    if (!imgPath) return '/assets/images/default-avatar.png';
+    
+    // If it's already a full URL, return as is
+    if (imgPath.startsWith('http://') || imgPath.startsWith('https://')) {
+      return imgPath;
+    }
+    
+    // If it starts with a slash, it's already a root path
+    if (imgPath.startsWith('/')) {
+      return imgPath;
+    }
+    
+    // Otherwise, prefix it with the assets path
+    return `/assets/images/${imgPath}`;
+  };
+
   // Helper function to get hackathon details
   const getHackathonDetails = (hackathonName: string) => {
     const hackathon = sreeData.hackathons.events.find(h => 
       h.event.toLowerCase().includes(hackathonName.toLowerCase())
     );
     if (hackathon) {
-      // Ensure all image paths are prefixed with public/assets
-      const formattedImages = hackathon.event_photos.slice(0, 2).map(img => 
-        img.startsWith('/') ? img : `/assets/images/${img}`
-      );
+      // Ensure all image paths are properly formatted
+      const formattedImages = hackathon.event_photos.slice(0, 2).map(img => formatImagePath(img));
       
       return {
         text: `${hackathon.event} - ${hackathon.result}
