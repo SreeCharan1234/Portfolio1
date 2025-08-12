@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send, Bot, User } from "lucide-react";
 import Image from "next/image";
+import sreeData from "@/data/sree.json";
 
 interface Message {
   id: string;
@@ -28,36 +29,55 @@ const Chatbot = () => {
   const [showProjects, setShowProjects] = useState(false);
   const [showHackathons, setShowHackathons] = useState(false);
 
+  // Helper function to get project details
+  const getProjectDetails = (projectName: string) => {
+    const project = sreeData.projects.find(p => 
+      p.name.toLowerCase().includes(projectName.toLowerCase())
+    );
+    if (project) {
+      return {
+        text: `${project.name} is a ${project.category} project. ${project.description} 
+        
+Duration: ${project.duration}
+Team Size: ${project.teamSize}
+Technologies: ${project.technologies.join(", ")}
+Features: ${project.features.join(", ")}`,
+        images: project.projectPhotos.slice(0, 2)
+      };
+    }
+    return null;
+  };
+
+  // Helper function to get hackathon details
+  const getHackathonDetails = (hackathonName: string) => {
+    const hackathon = sreeData.hackathons.events.find(h => 
+      h.event.toLowerCase().includes(hackathonName.toLowerCase())
+    );
+    if (hackathon) {
+      return {
+        text: `${hackathon.event} - ${hackathon.result}
+        
+Date: ${hackathon.monthYear}
+Host: ${hackathon.host}
+Team Size: ${hackathon.teamSize}
+Technologies: ${hackathon.technologies.join(", ")}
+Awards: ${hackathon.awards.join(", ")}
+${hackathon.members ? `Team Members: ${hackathon.members.join(", ")}` : ""}`,
+        images: hackathon.eventPhotos.slice(0, 2)
+      };
+    }
+    return null;
+  };
+
   const predefinedResponses = {
-    skills: "I have expertise in React, Node.js, TypeScript, MongoDB, Express.js, AWS, Python, TensorFlow, and many other modern technologies. I'm passionate about full-stack development and AI/ML solutions.",
-    projects: "Some of my notable projects include AgriVision (AI-powered agricultural platform), Health Buddy (ML-based health management), Study Buddy (educational platform), Code Off Duty (task management), Sarthi (navigation app), and Surasksha Suchak (security monitoring system). Ask me about any specific project to see details and screenshots!",
-    experience: "I'm currently working as a Full Stack Developer at MAQ Software Solutions in Hyderabad. I have previous experience as a Software Developer Intern and have also worked as a Freelance Web Developer, completing 10+ client projects.",
-    education: "I have a strong educational background in Computer Science with focus on software development and emerging technologies. I've also earned various certifications in cloud computing, web development, and AI/ML.",
-    hackathons: "I'm an active participant in hackathons and competitive programming. I've participated in DevFest, Microsoft Hackathon, Arena, Build-a-thon, Code-a-haunt, Code of Duty, Coding Blocks LPU, Kriyeta 3.0, and many others with multiple wins! Ask me about any specific hackathon to see photos and details.",
-    contact: "You can reach me through the contact form on this website, or connect with me on LinkedIn and GitHub. I'm always open to discussing new opportunities and collaborations!",
-    
-    // Detailed Project Responses
-    agrivision: "AgriVision is an AI-powered agricultural platform that helps farmers with crop planning, disease detection, and yield prediction. It features plant AI recognition, crop details analysis, ecosystem monitoring, and voice-to-text functionality for easy interaction.",
-    "health buddy": "Health Buddy is an ML-based health management system that provides personalized health recommendations, tracks vital signs, and offers intelligent health insights using machine learning algorithms.",
-    "study buddy": "Study Buddy is an educational platform designed to enhance learning experiences with interactive features, progress tracking, and personalized study recommendations.",
-    "code off duty": "Code Off Duty is a comprehensive task management and productivity application with modern UI/UX, featuring project tracking, team collaboration, and efficient workflow management.",
-    sarthi: "Sarthi is a navigation and assistance application designed to help users with location-based services, route optimization, and real-time guidance.",
-    "surasksha suchak": "Surasksha Suchak is a security monitoring system that provides real-time surveillance, threat detection, and alert mechanisms for enhanced security management.",
-    
-    // Detailed Hackathon Responses
-    devfest: "DevFest was an amazing experience where I won 1st place! It was a Google Developer Groups event focused on modern web technologies and innovative solutions.",
-    microsoft: "Microsoft Hackathon was incredibly competitive where I secured 2nd place. The event focused on cloud solutions and AI integration using Microsoft Azure services.",
-    arena: "Arena hackathon was a competitive programming and development event where I showcased problem-solving skills and technical expertise.",
-    "build a thon": "Build-a-thon was a construction and development themed hackathon focusing on creating practical solutions for real-world problems.",
-    "build-a-thon": "Build-a-thon was a construction and development themed hackathon focusing on creating practical solutions for real-world problems.",
-    "code a haunt": "Code-a-haunt was a Halloween-themed coding competition with creative challenges and spooky programming problems.",
-    "code-a-haunt": "Code-a-haunt was a Halloween-themed coding competition with creative challenges and spooky programming problems.",
-    "code of duty": "Code of Duty was a military-themed hackathon focusing on strategic programming challenges and tactical problem-solving.",
-    "coding blocks lpu": "Coding Blocks LPU hackathon was organized at Lovely Professional University, featuring algorithmic challenges and development competitions.",
-    kriyeta: "Kriyeta 3.0 was a major technical fest hackathon with multiple rounds of competition, showcasing innovation and technical excellence.",
-    "kriyeta 3.0": "Kriyeta 3.0 was a major technical fest hackathon with multiple rounds of competition, showcasing innovation and technical excellence.",
-    
-    default: "That's an interesting question! I can tell you about my skills, projects, experience, education, hackathons, or how to contact me. You can also ask about specific projects like 'AgriVision', 'Health Buddy', 'Study Buddy', etc., or specific hackathons like 'DevFest', 'Microsoft', 'Arena', etc. What would you like to know more about?",
+    skills: `I have expertise in: ${sreeData.skills.frontend ? Object.keys(sreeData.skills.frontend).join(", ") : ""}, ${sreeData.skills.backend ? Object.keys(sreeData.skills.backend).join(", ") : ""}, and many other modern technologies. I'm passionate about full-stack development and AI/ML solutions.`,
+    projects: `Some of my notable projects include ${sreeData.projects.map(p => p.name).join(", ")}. Each project showcases different aspects of my technical skills. Ask me about any specific project to see details and screenshots!`,
+    experience: `I'm currently working as a ${sreeData.workExperience[0].role} at ${sreeData.workExperience[0].company} in ${sreeData.workExperience[0].location}. I have ${sreeData.experienceSummary.yearsExperience} years of experience and have completed ${sreeData.experienceSummary.projectsCompleted} projects.`,
+    education: `I have a ${sreeData.education[0].degree} in ${sreeData.education[0].field} from ${sreeData.education[0].institution} with ${sreeData.education[0].grade} CGPA. I've also earned various certifications in cloud computing, web development, and AI/ML.`,
+    hackathons: `I'm an active participant in hackathons and competitive programming. I've participated in ${sreeData.hackathons.totalParticipated} hackathons with ${sreeData.hackathons.winsOrTopPlaces} wins/top places including ${sreeData.hackathons.events.map(h => h.event).join(", ")}. Ask me about any specific hackathon to see photos and details!`,
+    contact: `You can reach me at ${sreeData.contact.email} or connect with me on LinkedIn and GitHub. I'm based in ${sreeData.contact.location} and always open to discussing new opportunities and collaborations!`,
+    certifications: `I have several certifications including ${sreeData.certifications.map(c => c.name).join(", ")}. These certifications demonstrate my expertise in various technologies and platforms.`,
+    default: "That's an interesting question! I can tell you about my skills, projects, experience, education, hackathons, certifications, or how to contact me. You can also ask about specific projects or hackathons for detailed information with photos. What would you like to know more about?",
   };
 
   const handleSend = async () => {
@@ -83,7 +103,7 @@ const Chatbot = () => {
       // Enhanced keyword matching with image support
       if (lowercaseInput.includes("skill") || lowercaseInput.includes("technology") || lowercaseInput.includes("tech")) {
         response = predefinedResponses.skills;
-      } else if (lowercaseInput.includes("project") || lowercaseInput.includes("work") || lowercaseInput.includes("portfolio")) {
+      } else if (lowercaseInput.includes("project") && !lowercaseInput.includes("agrivision") && !lowercaseInput.includes("health") && !lowercaseInput.includes("study")) {
         response = predefinedResponses.projects;
       } else if (lowercaseInput.includes("experience") || lowercaseInput.includes("job") || lowercaseInput.includes("career")) {
         response = predefinedResponses.experience;
@@ -93,56 +113,26 @@ const Chatbot = () => {
         response = predefinedResponses.hackathons;
       } else if (lowercaseInput.includes("contact") || lowercaseInput.includes("reach") || lowercaseInput.includes("email")) {
         response = predefinedResponses.contact;
+      } else if (lowercaseInput.includes("certification") || lowercaseInput.includes("certificate")) {
+        response = predefinedResponses.certifications;
       } else if (lowercaseInput.includes("hello") || lowercaseInput.includes("hi") || lowercaseInput.includes("hey")) {
         response = "Hello! Nice to meet you! I'm here to help you learn more about K Sree Charan. What would you like to know?";
       }
       
-      // Specific Project Matching
-      else if (lowercaseInput.includes("agrivision") || lowercaseInput.includes("agri vision")) {
-        response = predefinedResponses.agrivision;
-        images = ["/assets/images/projects/agrivision/landingpage.png", "/assets/images/projects/agrivision/plantai.png"];
-      } else if (lowercaseInput.includes("health buddy") || lowercaseInput.includes("healthbuddy")) {
-        response = predefinedResponses["health buddy"];
-        images = ["/assets/images/projects/health-buddy/dashbord.png", "/assets/images/projects/health-buddy/login.png"];
-      } else if (lowercaseInput.includes("study buddy") || lowercaseInput.includes("studybuddy")) {
-        response = predefinedResponses["study buddy"];
-        images = ["/assets/images/projects/study-buddy/dashboard.png", "/assets/images/projects/study-buddy/codeeditor.png"];
-      } else if (lowercaseInput.includes("code off duty") || lowercaseInput.includes("codeoffduty")) {
-        response = predefinedResponses["code off duty"];
-        images = ["/assets/images/projects/code-off-duty/1.png", "/assets/images/projects/code-off-duty/2.png"];
-      } else if (lowercaseInput.includes("sarthi")) {
-        response = predefinedResponses.sarthi;
-        images = ["/assets/images/projects/sarthi/1.png", "/assets/images/projects/sarthi/2.png"];
-      } else if (lowercaseInput.includes("surasksha suchak") || lowercaseInput.includes("surasksha") || lowercaseInput.includes("suchak")) {
-        response = predefinedResponses["surasksha suchak"];
-        images = ["/assets/images/projects/surasksha-suchak/1.png", "/assets/images/projects/surasksha-suchak/2.png"];
-      }
-      
-      // Specific Hackathon Matching
-      else if (lowercaseInput.includes("devfest") || lowercaseInput.includes("dev fest")) {
-        response = predefinedResponses.devfest;
-        images = ["/assets/images/hackathons/devfest/1.jpg", "/assets/images/hackathons/devfest/2.jpg"];
-      } else if (lowercaseInput.includes("microsoft")) {
-        response = predefinedResponses.microsoft;
-        images = ["/assets/images/hackathons/microsoft/1.jpg", "/assets/images/hackathons/microsoft/2.jpg"];
-      } else if (lowercaseInput.includes("arena")) {
-        response = predefinedResponses.arena;
-        images = ["/assets/images/hackathons/arena/1.jpg", "/assets/images/hackathons/arena/2.jpg"];
-      } else if (lowercaseInput.includes("build") && (lowercaseInput.includes("thon") || lowercaseInput.includes("a-thon"))) {
-        response = predefinedResponses["build-a-thon"];
-        images = ["/assets/images/hackathons/build-a-thon/2.jpg", "/assets/images/hackathons/build-a-thon/3.jpg"];
-      } else if (lowercaseInput.includes("code") && lowercaseInput.includes("haunt")) {
-        response = predefinedResponses["code-a-haunt"];
-        images = ["/assets/images/hackathons/code-a-haunt/main.jpg", "/assets/images/hackathons/code-a-haunt/main.jpg"];
-      } else if (lowercaseInput.includes("code") && lowercaseInput.includes("duty")) {
-        response = predefinedResponses["code of duty"];
-        images = ["/assets/images/hackathons/code-of-duty/1.jpg", "/assets/images/hackathons/code-of-duty/2.jpg"];
-      } else if (lowercaseInput.includes("coding blocks") || lowercaseInput.includes("lpu")) {
-        response = predefinedResponses["coding blocks lpu"];
-        images = ["/assets/images/hackathons/codingblockslpu/1.jpg", "/assets/images/hackathons/codingblockslpu/2.jpg"];
-      } else if (lowercaseInput.includes("kriyeta")) {
-        response = predefinedResponses["kriyeta 3.0"];
-        images = ["/assets/images/hackathons/kriyeta3.0/1.jpg", "/assets/images/hackathons/kriyeta3.0/2.jpg"];
+      // Specific Project Matching using helper function
+      else {
+        const projectResult = getProjectDetails(lowercaseInput);
+        if (projectResult) {
+          response = projectResult.text;
+          images = projectResult.images;
+        } else {
+          // Specific Hackathon Matching using helper function
+          const hackathonResult = getHackathonDetails(lowercaseInput);
+          if (hackathonResult) {
+            response = hackathonResult.text;
+            images = hackathonResult.images;
+          }
+        }
       }
 
       const botMessage: Message = {
@@ -396,11 +386,11 @@ const Chatbot = () => {
                       exit={{ opacity: 0, height: 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      {["AgriVision", "Health Buddy", "Study Buddy", "Code Off Duty", "Sarthi", "Surasksha Suchak"].map((project) => (
+                      {sreeData.projects.map((project, index) => (
                         <motion.button
-                          key={project}
+                          key={project.name}
                           onClick={() => {
-                            setInputText(project);
+                            setInputText(project.name);
                             setShowProjects(false); // Auto-collapse after selection
                           }}
                           className="px-2 py-1 text-xs bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/30 rounded-full border border-blue-200 dark:border-blue-800 transition-colors text-blue-700 dark:text-blue-300"
@@ -408,9 +398,9 @@ const Chatbot = () => {
                           whileTap={{ scale: 0.95 }}
                           initial={{ opacity: 0, scale: 0.8 }}
                           animate={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.2, delay: 0.1 }}
+                          transition={{ duration: 0.2, delay: index * 0.05 }}
                         >
-                          {project}
+                          {project.name}
                         </motion.button>
                       ))}
                     </motion.div>
@@ -427,11 +417,11 @@ const Chatbot = () => {
                       exit={{ opacity: 0, height: 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      {["DevFest", "Microsoft", "Arena", "Build-a-thon", "Code-a-haunt", "Code of Duty", "Coding Blocks LPU", "Kriyeta 3.0"].map((hackathon) => (
+                      {sreeData.hackathons.events.map((hackathon, index) => (
                         <motion.button
-                          key={hackathon}
+                          key={hackathon.event}
                           onClick={() => {
-                            setInputText(hackathon);
+                            setInputText(hackathon.event);
                             setShowHackathons(false); // Auto-collapse after selection
                           }}
                           className="px-2 py-1 text-xs bg-purple-50 dark:bg-purple-900/20 hover:bg-purple-100 dark:hover:bg-purple-900/30 rounded-full border border-purple-200 dark:border-purple-800 transition-colors text-purple-700 dark:text-purple-300"
@@ -439,9 +429,9 @@ const Chatbot = () => {
                           whileTap={{ scale: 0.95 }}
                           initial={{ opacity: 0, scale: 0.8 }}
                           animate={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.2, delay: 0.1 }}
+                          transition={{ duration: 0.2, delay: index * 0.05 }}
                         >
-                          {hackathon}
+                          {hackathon.event}
                         </motion.button>
                       ))}
                     </motion.div>

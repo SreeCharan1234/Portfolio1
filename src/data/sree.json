@@ -1,0 +1,362 @@
+{
+  "name": "K Sree Charan",
+  "title": "Full Stack Developer at MAQ Software Solutions",
+  "technologies": ["Python", "Machine Learning", "TensorFlow", "Pandas", "NumPy", "Scikit-learn", "Deep Learning", "AI/ML", "Data Science"],
+  "experienceSummary": {
+    "yearsExperience": "1+",
+    "projectsCompleted": "15+",
+    "technologiesKnown": "10+",
+    "hackathonsParticipated": "10+"
+  },
+  "workExperience": [
+    {
+      "role": "Full Stack Developer",
+      "type": "Full-time",
+      "company": "MAQ Software Solutions",
+      "years": "2025 - Present",
+      "location": "Noida, India",
+      "achievements": ["development of 5+ web applications", "Improved app performance by 40%", "Mentored 2 junior developers"],
+      "technologies": ["Node.js", "TypeScript", "MongoDB", "Express.js", "AWS","Airflow","AI/ML"]
+    },
+    {
+      "role": "Software Developer Intern",
+      "type": "Internship",
+      "company": "Tech Solutions Inc.",
+      "years": "2022 - 2023",
+      "location": "Remote",
+      "achievements": ["Completed 3 major projects", "Received outstanding performance rating", "Converted to full-time position"],
+      "technologies": ["Python", "Machine Learning", "TensorFlow", "Pandas", "NumPy", "Scikit-learn", "Deep Learning", "AI/ML", "Data Science"]
+    },
+    {
+      "role": "Freelance Web Developer",
+      "type": "Freelance",
+      "company": "Self Employed",
+      "years": "2021 - 2022",
+      "location": "Remote",
+      "achievements": ["Completed 10+ client projects", "Maintained 100% client satisfaction", "Built recurring revenue stream"],
+      "technologies": ["Python", "Machine Learning", "AI/ML", "TensorFlow", "PyTorch", "Computer Vision", "NLP", "Data Analytics", "MLOps"]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Technology",
+      "field": "Computer Science Engineering",
+      "institution": "Lovely Professional University",
+      "years": "2022 - 2026",
+      "location": "Punjab, India",
+      "grade": "8.0 CGPA",
+      "achievements": ["Dean's List for Academic Excellence", "Winner of Inter-College Coding Competition", "Published research paper on Web Technologies"]
+    },
+    {
+      "qualification": "Senior Secondary (12th)",
+      "field": "Science (PCM)",
+      "institution": "Kendriya Vidyalaya",
+      "years": "2020 - 2022",
+      "location": "Delhi, India",
+      "grade": "80.82%",
+      "achievements": ["School Topper in Computer Science", "State Level Mathematics Olympiad Participant"]
+    }
+  ],
+  "certifications": [
+    {
+      "name": "LeetCode Problem Solving",
+      "issuer": "LeetCode",
+      "year": "2024",
+      "id": "LC-SOLVER-500+",
+      "description": "Solved 500+ coding problems across various difficulty levels",
+      "badge": "Knight (1800+ rating)"
+    },
+    {
+      "name": "Data Structures & Algorithms",
+      "issuer": "LeetCode Premium",
+      "year": "2024",
+      "id": "LC-DSA-MASTER",
+      "description": "Mastered advanced algorithms and data structure patterns",
+      "badge": "Algorithm Specialist"
+    },
+    {
+      "name": "Python for Data Science",
+      "issuer": "IBM",
+      "year": "2023",
+      "id": "IBM-PY-456"
+    },
+    {
+      "name": "Full Stack Web Development",
+      "issuer": "Coursera",
+      "year": "2023",
+      "id": "COURSERA-FS-321"
+    }
+  ],
+  "skills": {
+    "frontend": {
+      "React": "90%",
+      "Next.js": "85%",
+      "TypeScript": "80%",
+      "JavaScript": "95%",
+      "HTML/CSS": "90%",
+      "Tailwind CSS": "85%"
+    },
+    "backend": {
+      "Node.js": "85%",
+      "Express.js": "80%",
+      "Python": "75%",
+      "REST APIs": "90%",
+      "GraphQL": "70%",
+      "Microservices": "75%"
+    },
+    "databaseAndCloud": {
+      "MongoDB": "85%",
+      "PostgreSQL": "80%",
+      "MySQL": "75%",
+      "AWS": "70%",
+      "Firebase": "80%",
+      "Redis": "65%"
+    },
+    "tools": {
+      "Git/GitHub": "90%",
+      "Docker": "75%",
+      "VS Code": "95%",
+      "Postman": "85%",
+      "Figma": "70%",
+      "Jira": "80%"
+    },
+    "mobileDevelopment": {
+      "React Native": "75%",
+      "Flutter": "65%",
+      "Mobile UI/UX": "80%"
+    },
+    "programmingLanguages": {
+      "JavaScript": "95%",
+      "TypeScript": "85%",
+      "Python": "80%",
+      "Java": "70%",
+      "C++": "65%"
+    }
+  },
+  "projects": [
+    {
+      "name": "AgriVision",
+      "category": "Full Stack",
+      "description": "A comprehensive agricultural platform with AI-powered crop detection, growth monitoring, and market insights.",
+      "duration": "3 months",
+      "teamSize": 4,
+      "members": ["K Sree Charan", "Bighnesh Kumar Sahoo", "Shubham Pandey", "Sarthak Awasthi"],
+      "projectPhotos": [
+        "/assets/images/projects/agrivision/apiofondemand.png",
+        "/assets/images/projects/agrivision/cropdetails.png",
+        "/assets/images/projects/agrivision/ecosystem.png",
+        "/assets/images/projects/agrivision/landingpage.png",
+        "/assets/images/projects/agrivision/plantai.png",
+        "/assets/images/projects/agrivision/plantfind.png",
+        "/assets/images/projects/agrivision/plantgrpth.png",
+        "/assets/images/projects/agrivision/seasibak cropPlanner.png",
+        "/assets/images/projects/agrivision/voicetotext.png"
+      ],
+      "githubLink": "https://github.com/yourusername/agri-vision",
+      "technologies": ["React", "Node.js", "Python", "AI/ML", "TensorFlow"],
+      "features": ["AI-powered plant disease detection", "Crop growth monitoring", "Market price predictions", "Voice-to-text functionality", "Crop planning system"]
+    },
+    {
+      "name": "Health Buddy",
+      "category": "Healthcare",
+      "description": "Heart Disease Prediction and Notification System - A comprehensive medical alert system that predicts the risk of heart disease using advanced machine learning techniques and agent-based message passing.",
+      "duration": "4 months",
+      "teamSize": 3,
+      "projectPhotos": [
+        "/assets/images/projects/health-buddy/dashbord.png",
+        "/assets/images/projects/health-buddy/login.png",
+        "/assets/images/projects/health-buddy/heartdiseasePrediction.jpg",
+        "/assets/images/projects/health-buddy/nearbyhospitals.png"
+      ],
+      "githubLink": "https://github.com/SreeCharan1234/health-buddy",
+      "deploymentLink": "https://health-buddy.streamlit.app/",
+      "linkedinPost": "https://www.linkedin.com/posts/sreecharan1234/health-buddy-healthcare",
+      "technologies": ["Python", "Machine Learning", "uAgents Framework", "Joblib", "Pandas", "Mailjet API", "Streamlit"],
+      "features": [
+        "AI-powered heart disease prediction using ML models",
+        "Agent-based interaction with automated notification system",
+        "Email alerts for immediate patient notification",
+        "Secure data privacy through agent communication",
+        "Early detection system for preventive healthcare"
+      ]
+    },
+    {
+      "name": "Study Buddy",
+      "category": "Education",
+      "description": "An educational platform with coding challenges, roadmaps, and peer-to-peer learning features.",
+      "duration": "2 months",
+      "teamSize": 2,
+      "projectPhotos": [
+        "/assets/images/projects/study-buddy/dashboard.png",
+        "/assets/images/projects/study-buddy/codeeditor.png",
+        "/assets/images/projects/study-buddy/1 vs 1.png",
+        "/assets/images/projects/study-buddy/roadmap.png"
+      ],
+      "technologies": ["React", "Node.js", "Socket.io", "MongoDB", "Judge0 API"],
+      "features": ["Interactive coding challenges", "Learning roadmaps", "1v1 coding competitions", "Real-time code editor"]
+    },
+    {
+      "name": "Sarthi",
+      "category": "Logistics",
+      "description": "A comprehensive logistics and transportation management system with payment integration.",
+      "duration": "3 months",
+      "teamSize": 4,
+      "projectPhotos": [
+        "/assets/images/projects/sarthi/home.png",
+        "/assets/images/projects/sarthi/paymentgateway.png"
+      ],
+      "technologies": ["React", "Node.js", "Razorpay", "MongoDB"],
+      "features": ["Real-time tracking", "Payment gateway integration", "Route optimization"]
+    },
+    {
+      "name": "Surasksha Suchak",
+      "category": "Security",
+      "description": "A security monitoring and alert system for enhanced safety and surveillance.",
+      "duration": "5 months",
+      "teamSize": 5,
+      "projectPhotos": [
+        "/assets/images/projects/surasksha-suchak/1.png",
+        "/assets/images/projects/surasksha-suchak/2.png"
+      ],
+      "technologies": ["React", "Node.js", "WebRTC", "Computer Vision"],
+      "features": ["Real-time video monitoring", "Automatic threat detection", "Emergency alert system"]
+    },
+    {
+      "name": "Code Off Duty",
+      "category": "EdTech",
+      "description": "A competitive programming platform with contests, leaderboards, and skill assessments.",
+      "duration": "4 months",
+      "teamSize": 3,
+      "projectPhotos": [
+        "/assets/images/projects/code-off-duty/1.png",
+        "/assets/images/projects/code-off-duty/2.png"
+      ],
+      "technologies": ["React", "Node.js", "Judge0 API", "MongoDB"],
+      "features": ["Online code execution", "Contest management", "Real-time leaderboards"]
+    }
+  ],
+  "hackathons": {
+    "totalParticipated": "8+",
+    "winsOrTopPlaces": 5,
+    "teamMembers": "20+",
+    "yearsActive": 2,
+    "events": [
+      {
+        "event": "DevFest",
+        "result": "1st Place – Best Innovation Award",
+        "monthYear": "November 2023",
+        "host": "Google Developer Community",
+        "teamSize": 4,
+        "eventPhotos": [
+          "/assets/images/hackathons/devfest/1.jpg",
+          "/assets/images/hackathons/devfest/2.jpg"
+        ],
+        "technologies": ["React", "Node.js", "AI/ML", "IoT"],
+        "awards": ["Best Innovation Award", "People's Choice Award", "₹50,000 Prize Money"]
+      },
+      {
+        "event": "Microsoft Hackathon",
+        "result": "Winners",
+        "monthYear": "October 2023",
+        "host": "Microsoft India",
+        "teamSize": 4,
+        "eventPhotos": [
+          "/assets/images/hackathons/microsoft/1.jpg",
+          "/assets/images/hackathons/microsoft/2.jpg"
+        ],
+        "members": ["K Sree Charan", "Shivani", "Sushil", "Abhishek Kumar"],
+        "technologies": ["Azure", "React", "C#.NET"],
+        "awards": ["2nd Place Winner", "Azure Credits Worth ₹25,000", "Microsoft Certification"]
+      },
+      {
+        "event": "Kriyeta 3.0",
+        "result": "Placed in Top 4",
+        "monthYear": "September 2023",
+        "host": "Technical Festival",
+        "teamSize": 5,
+        "eventPhotos": [
+          "/assets/images/hackathons/kriyeta3.0/1.jpg",
+          "/assets/images/hackathons/kriyeta3.0/2.jpg"
+        ],
+        "members": ["K Sree Charan", "Shivani", "Sushil", "Abhishek Kumar", "Shubham"],
+        "technologies": ["IoT", "Python", "React", "MongoDB"],
+        "awards": ["Overall Winners", "Best Technical Implementation", "₹30,000 Prize Money"]
+      },
+      {
+        "event": "Build-a-thon",
+        "result": "1st Place – Web Development Challenge",
+        "monthYear": "August 2023",
+        "host": "Tech Community",
+        "teamSize": 4,
+        "eventPhotos": [
+          "/assets/images/hackathons/build-a-thon/2.jpg",
+          "/assets/images/hackathons/build-a-thon/3.jpg"
+        ],
+        "members": ["K Sree Charan", "Abhishek Kumar", "Sushil", "Shubham"],
+        "technologies": ["Next.js", "Node.js", "Stripe", "MongoDB"],
+        "awards": ["1st Place", "Best UI/UX Design", "Mentorship Program"]
+      },
+      {
+        "event": "Code-a-haunt",
+        "result": "Winner",
+        "monthYear": "October 2022",
+        "host": "Online Event",
+        "teamSize": 5,
+        "eventPhotos": [
+          "/assets/images/hackathons/code-a-haunt/main.jpg"
+        ],
+        "members": ["K Sree Charan", "Abhishek Kumar", "Sushil", "Shubham", "Hardik"],
+        "technologies": ["JavaScript", "HTML/CSS", "Animation"],
+        "awards": ["Top 10 Finalist", "Creative Coding Award", "Community Recognition"]
+      },
+      {
+        "event": "Arena",
+        "result": "Top Performer – Competitive Programming",
+        "monthYear": "March 2023",
+        "host": "Arena",
+        "teamSize": 4,
+        "eventPhotos": [
+          "/assets/images/hackathons/arena/1.jpg",
+          "/assets/images/hackathons/arena/2.jpg"
+        ],
+        "members": ["K Sree Charan", "Rehan", "Amit", "Aman"],
+        "technologies": ["C++", "Algorithms", "Data Structures"],
+        "awards": ["Top 50 Performers", "Problem Solving Excellence", "Certificate of Merit"]
+      },
+      {
+        "event": "Code of Duty",
+        "result": "Winner – Competitive Programming Championship",
+        "monthYear": "December 2023",
+        "host": "University Competition",
+        "teamSize": 5,
+        "eventPhotos": [
+          "/assets/images/hackathons/code-of-duty/1.jpg",
+          "/assets/images/hackathons/code-of-duty/2.jpg"
+        ],
+        "members": ["K Sree Charan", "Ritik", "Shubham Kumar", "Shafe", "Amit"],
+        "technologies": ["C++", "Algorithms", "Data Structures", "Dynamic Programming"],
+        "awards": ["Championship Winner", "Fastest Solution Award", "₹15,000 Prize Money"]
+      },
+      {
+        "event": "Coding Blocks LPU",
+        "result": "2nd Place – Web Development Challenge",
+        "monthYear": "January 2023",
+        "host": "Lovely Professional University",
+        "teamSize": 4,
+        "eventPhotos": [
+          "/assets/images/hackathons/codingblockslpu/1.jpg",
+          "/assets/images/hackathons/codingblockslpu/2.jpg"
+        ],
+        "members": ["K Sree Charan", "Ritik", "Shafe", "Abhishek"],
+        "technologies": ["React", "Node.js", "MongoDB", "Express.js"],
+        "awards": ["2nd Place Winner", "Best Backend Implementation", "Internship Opportunity"]
+      }
+    ]
+  },
+  "contact": {
+    "email": "sreecharan9484@gmail.com",
+    "phone": "+91 9876543210",
+    "location": "Noida, India"
+  },
+  "footer": "© 2025 K Sree Charan. Built with Next.js and Tailwind CSS."
+}
