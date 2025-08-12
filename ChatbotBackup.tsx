@@ -2,9 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mes      } else if (lowercaseInput.includes("project") && !lowercaseInput.includes("agrivision") && !lowercaseInput.includes("health") && !lowercaseInput.includes("study buddy")) {
-        response = predefinedResponses.projects;
-      } else if (lowercaseInput.includes("education") || (lowercaseInput.includes("study") && !lowercaseInput.includes("study buddy")) || lowercaseInput.includes("degree")) {eCircle, X, Send, Bot, User } from "lucide-react";
+import { MessageCircle, X, Send, Bot, User } from "lucide-react";
 import Image from "next/image";
 import sreeData from "@/data/sree.json";
 
