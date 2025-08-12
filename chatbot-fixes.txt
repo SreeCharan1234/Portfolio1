@@ -1,0 +1,29 @@
+// This is a temporary file with the fixes needed for the Chatbot component
+// Main fixes:
+// 1. Update the condition to correctly handle "Study Buddy" as a project
+// 2. Make sure two images are displayed for projects and hackathons
+// 3. Set contact email to sreecharan9484@gmail.com
+
+// Original line 123:
+// } else if (lowercaseInput.includes("project") && !lowercaseInput.includes("agrivision") && !lowercaseInput.includes("health") && !lowercaseInput.includes("study")) {
+
+// Should be changed to:
+// } else if (lowercaseInput.includes("project") && !lowercaseInput.includes("agrivision") && !lowercaseInput.includes("health") && !lowercaseInput.includes("study buddy")) {
+
+// Original line 127:
+// } else if (lowercaseInput.includes("education") || lowercaseInput.includes("study") || lowercaseInput.includes("degree")) {
+
+// Should be changed to:
+// } else if (lowercaseInput.includes("education") || (lowercaseInput.includes("study") && !lowercaseInput.includes("study buddy")) || lowercaseInput.includes("degree")) {
+
+// Original contact email response:
+// contact: `You can reach me at ${sreeData.contact.email} or connect with me on LinkedIn and GitHub. I'm based in ${sreeData.contact.location} and always open to discussing new opportunities and collaborations!`,
+
+// Should be changed to:
+// contact: `You can reach me at sreecharan9484@gmail.com or connect with me on LinkedIn and GitHub. I'm based in ${sreeData.contact.location} and always open to discussing new opportunities and collaborations!`,
+
+// Original image grid:
+// <div className="grid grid-cols-1 gap-2">
+
+// Should be changed to:
+// <div className="grid grid-cols-2 gap-2"

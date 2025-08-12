@@ -40,17 +40,6 @@ const Chatbot = () => {
       p.name.toLowerCase().includes(projectName.toLowerCase())
     );
     if (project) {
-      // Ensure all image paths are prefixed with public/assets
-      const formattedImages = project.Project_photo.slice(0, 2).map(img => 
-        img.startsWith('/') ? img : `/assets/images/${img}`
-      );
-      
-      // Format team member photos similarly
-      const memberPhotos = project.member_profile_photos ? 
-        project.member_profile_photos.map(photo => 
-          photo.startsWith('/') ? photo : `/assets/images/${photo}`
-        ) : [];
-        
       return {
         text: `${project.name} is a ${project.category} project. ${project.description} 
         
@@ -60,10 +49,10 @@ const Chatbot = () => {
 ✨ Features: ${project.features.join(", ")}
 
 🤝 Team Members: ${project.Members ? project.Members.join(", ") : "Not specified"}`,
-        images: formattedImages,
+        images: project.Project_photo.slice(0, 2),
         teamMembers: project.Members && project.member_profile_photos && project.member_linkedin_urls ? {
           names: project.Members,
-          photos: memberPhotos,
+          photos: project.member_profile_photos,
           linkedinUrls: project.member_linkedin_urls
         } : undefined
       };
@@ -77,21 +66,16 @@ const Chatbot = () => {
       h.event.toLowerCase().includes(hackathonName.toLowerCase())
     );
     if (hackathon) {
-      // Ensure all image paths are prefixed with public/assets
-      const formattedImages = hackathon.event_photos.slice(0, 2).map(img => 
-        img.startsWith('/') ? img : `/assets/images/${img}`
-      );
-      
       return {
         text: `${hackathon.event} - ${hackathon.result}
         
 Date: ${hackathon.monthYear}
 Host: ${hackathon.host}
 Team Size: ${hackathon.teamSize}
-Technologies: ${hackathon.technologies ? hackathon.technologies.join(", ") : "Not specified"}
-Awards: ${hackathon.awards ? hackathon.awards.join(", ") : "Not specified"}
+Technologies: ${hackathon.technologies.join(", ")}
+Awards: ${hackathon.awards.join(", ")}
 ${hackathon.members ? `Team Members: ${hackathon.members.join(", ")}` : ""}`,
-        images: formattedImages
+        images: hackathon.event_photos.slice(0, 2)
       };
     }
     return null;
@@ -289,33 +273,27 @@ ${hackathon.members ? `Team Members: ${hackathon.members.join(", ")}` : ""}`,
                           {message.images && message.images.length > 0 && (
                             <div className="mt-3 space-y-2">
                               <div className="grid grid-cols-2 gap-2">
-                                {message.images.map((image, index) => {
-                                  // Log the image path for debugging
-                                  console.log("Image path:", image);
-                                  
-                                  return (
-                                    <motion.div
-                                      key={index}
-                                      initial={{ opacity: 0, scale: 0.8 }}
-                                      animate={{ opacity: 1, scale: 1 }}
-                                      transition={{ duration: 0.3, delay: index * 0.1 }}
-                                      className="relative overflow-hidden rounded-lg"
-                                    >
-                                      <Image
-                                        src={image}
-                                        alt={`Project/Hackathon screenshot ${index + 1}`}
-                                        width={200}
-                                        height={128}
-                                        className="w-full h-auto max-h-32 object-cover rounded-lg border border-border/20"
-                                        onError={(e) => {
-                                          console.error(`Failed to load image: ${image}`);
-                                          const target = e.target as HTMLImageElement;
-                                          target.style.display = 'none';
-                                        }}
-                                      />
-                                    </motion.div>
-                                  );
-                                })}
+                                {message.images.map((image, index) => (
+                                  <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                                    className="relative overflow-hidden rounded-lg"
+                                  >
+                                    <Image
+                                      src={image}
+                                      alt={`Project/Hackathon screenshot ${index + 1}`}
+                                      width={200}
+                                      height={128}
+                                      className="w-full h-auto max-h-32 object-cover rounded-lg border border-border/20"
+                                      onError={(e) => {
+                                        const target = e.target as HTMLImageElement;
+                                        target.style.display = 'none';
+                                      }}
+                                    />
+                                  </motion.div>
+                                ))}
                               </div>
                             </div>
                           )}
@@ -327,64 +305,47 @@ ${hackathon.members ? `Team Members: ${hackathon.members.join(", ")}` : ""}`,
                                 👥 Team Members:
                               </h4>
                               <div className="flex flex-wrap gap-3">
-                                {message.teamMembers.names.map((name, index) => {
-                                  // Log the member photo path for debugging
-                                  const photoSrc = message.teamMembers?.photos[index];
-                                  console.log("Member photo path:", photoSrc);
-                                      
-                                  return (
-                                    <motion.div
-                                      key={index}
-                                      initial={{ opacity: 0, scale: 0.8 }}
-                                      animate={{ opacity: 1, scale: 1 }}
-                                      transition={{ duration: 0.3, delay: index * 0.1 }}
-                                      className="text-center"
+                                {message.teamMembers.names.map((name, index) => (
+                                  <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                                    className="text-center"
+                                  >
+                                    <motion.button
+                                      onClick={() => {
+                                        if (message.teamMembers?.linkedinUrls[index]) {
+                                          window.open(message.teamMembers.linkedinUrls[index], '_blank');
+                                        }
+                                      }}
+                                      className="block hover:scale-105 transition-transform duration-200"
+                                      whileHover={{ scale: 1.05 }}
+                                      whileTap={{ scale: 0.95 }}
+                                      title={`Connect with ${name} on LinkedIn`}
                                     >
-                                      <motion.button
-                                        onClick={() => {
-                                          if (message.teamMembers?.linkedinUrls[index]) {
-                                            // Make sure linkedinUrl is a valid URL
-                                            try {
-                                              const linkedinUrl = message.teamMembers.linkedinUrls[index];
-                                              if (linkedinUrl && (linkedinUrl.startsWith('http://') || linkedinUrl.startsWith('https://'))) {
-                                                window.open(linkedinUrl, '_blank');
-                                              } else {
-                                                console.error('Invalid LinkedIn URL:', linkedinUrl);
-                                              }
-                                            } catch (error) {
-                                              console.error('Error opening LinkedIn URL:', error);
-                                            }
-                                          }
-                                        }}
-                                        className="block hover:scale-105 transition-transform duration-200"
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        title={`Connect with ${name} on LinkedIn`}
-                                      >
-                                        <div className="relative">
-                                          <Image
-                                            src={photoSrc || '/assets/images/default-avatar.png'}
-                                            alt={`${name} profile photo`}
-                                            width={50}
-                                            height={50}
-                                            className="w-12 h-12 rounded-full object-cover border-2 border-blue-200 dark:border-blue-700 hover:border-blue-400 dark:hover:border-blue-500 transition-colors"
-                                            onError={(e) => {
-                                              console.error(`Failed to load member photo: ${photoSrc}`);
-                                              const target = e.target as HTMLImageElement;
-                                              target.src = '/assets/images/default-avatar.png';
-                                            }}
-                                          />
-                                          <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
-                                            <span className="text-white text-xs">💼</span>
-                                          </div>
+                                      <div className="relative">
+                                        <Image
+                                          src={message.teamMembers?.photos[index] || '/assets/images/default-avatar.png'}
+                                          alt={`${name} profile photo`}
+                                          width={50}
+                                          height={50}
+                                          className="w-12 h-12 rounded-full object-cover border-2 border-blue-200 dark:border-blue-700 hover:border-blue-400 dark:hover:border-blue-500 transition-colors"
+                                          onError={(e) => {
+                                            const target = e.target as HTMLImageElement;
+                                            target.src = '/assets/images/default-avatar.png';
+                                          }}
+                                        />
+                                        <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
+                                          <span className="text-white text-xs">💼</span>
                                         </div>
-                                      </motion.button>
-                                      <p className="text-xs mt-1 text-center max-w-[60px] truncate" title={name}>
-                                        {name.split(' ')[0]}
-                                      </p>
-                                    </motion.div>
-                                  );
-                                })}
+                                      </div>
+                                    </motion.button>
+                                    <p className="text-xs mt-1 text-center max-w-[60px] truncate" title={name}>
+                                      {name.split(' ')[0]}
+                                    </p>
+                                  </motion.div>
+                                ))}
                               </div>
                             </div>
                           )}

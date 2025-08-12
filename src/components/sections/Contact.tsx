@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,10 @@ const Contact = () => {
     email: "",
     message: ""
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState<boolean | null>(null);
+  const [errorMessage, setErrorMessage] = useState("");
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -18,20 +23,41 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here (EmailJS or similar)
-    console.log("Form submitted:", formData);
-    // Reset form
-    setFormData({ name: "", email: "", message: "" });
+    setIsSubmitting(true);
+    setSubmitSuccess(null);
+    setErrorMessage("");
+    
+    try {
+      // Replace these with your actual EmailJS service, template, and public key
+      // You need to create an account at emailjs.com and set up a service and template
+      const result = await emailjs.sendForm(
+        'YOUR_SERVICE_ID', // Replace with your service ID
+        'YOUR_TEMPLATE_ID', // Replace with your template ID
+        formRef.current!,
+        'YOUR_PUBLIC_KEY' // Replace with your public key
+      );
+      
+      console.log('Email sent successfully:', result.text);
+      setSubmitSuccess(true);
+      // Reset form
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error('Email sending failed:', error);
+      setSubmitSuccess(false);
+      setErrorMessage("Failed to send message. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
     {
       icon: Mail,
       label: "Email",
-      value: "sreecharan@example.com",
-      href: "mailto:sreecharan@example.com"
+      value: "sreecharan9484@gmail.com",
+      href: "mailto:sreecharan9484@gmail.com"
     },
     {
       icon: Phone,
@@ -159,7 +185,7 @@ const Contact = () => {
             className="bg-background border border-border/50 rounded-lg p-8 shadow-lg"
           >
             <h3 className="text-2xl font-bold mb-6">Send Message</h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2">
                   Name
@@ -207,15 +233,37 @@ const Contact = () => {
                   placeholder="Tell me about your project or just say hello..."
                 />
               </div>
+              
+              {submitSuccess === true && (
+                <div className="p-3 bg-green-100 border border-green-300 text-green-800 rounded-lg">
+                  Message sent successfully! I&apos;ll get back to you soon.
+                </div>
+              )}
+              
+              {submitSuccess === false && (
+                <div className="p-3 bg-red-100 border border-red-300 text-red-800 rounded-lg">
+                  {errorMessage}
+                </div>
+              )}
 
               <motion.button
                 type="submit"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3 px-6 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2"
+                disabled={isSubmitting}
+                whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                className={`w-full bg-primary ${isSubmitting ? 'opacity-70' : 'hover:bg-primary/90'} text-primary-foreground py-3 px-6 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2`}
               >
-                <Send className="h-4 w-4" />
-                Send Message
+                {isSubmitting ? (
+                  <>
+                    <div className="h-4 w-4 border-2 border-primary-foreground border-t-transparent rounded-full animate-spin"></div>
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send className="h-4 w-4" />
+                    Send Message
+                  </>
+                )}
               </motion.button>
             </form>
           </motion.div>
