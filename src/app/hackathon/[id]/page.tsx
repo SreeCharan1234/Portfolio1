@@ -344,15 +344,35 @@ export default function HackathonDetail({ params }: { params: Promise<{ id: stri
 
   // Use JSON data if available, otherwise fallback to hardcoded data
   const teamMembers = jsonHackathon?.members || [];
-  const eventPhotos = jsonHackathon?.event_photos || hackathon.images;
+  const rawEventPhotos = jsonHackathon?.event_photos || hackathon.images;
   
-  // Create member photos and LinkedIn URLs mapping
-  const memberProfilePhotos = teamMembers.map((member: string) => 
+  // Format event photos with proper paths
+  const eventPhotos = rawEventPhotos.map((photo: string) => {
+    if (photo.startsWith('/assets') || photo.startsWith('http')) {
+      return photo;
+    }
+    return `/assets/images/${photo}`;
+  });
+  
+  // Create member photos and LinkedIn URLs mapping using JSON data
+  const memberProfilePhotos = jsonHackathon?.member_profile_photos || teamMembers.map((member: string) => 
     `/assets/images/member-photos/${member.replace(/\s+/g, '')}.jpg`
   );
   
-  const memberLinkedInUrls = teamMembers.map((member: string) => {
-    // Map member names to LinkedIn URLs (you can expand this mapping)
+  // Helper function to validate and fix URLs
+  const validateUrl = (url: string): string => {
+    if (!url || url === "#") return "#";
+    try {
+      new URL(url);
+      return url;
+    } catch {
+      // If URL is invalid, return a safe fallback
+      return "#";
+    }
+  };
+  
+  const memberLinkedInUrls = jsonHackathon?.member_linkedin_urls?.map(validateUrl) || teamMembers.map((member: string) => {
+    // Fallback mapping for hardcoded data
     const linkedInMapping: { [key: string]: string } = {
       "K Sree Charan": "https://www.linkedin.com/in/sree9484/",
       "Shivani": "https://www.linkedin.com/in/satapathy-28-shivani/",
@@ -366,7 +386,7 @@ export default function HackathonDetail({ params }: { params: Promise<{ id: stri
       "Ritik": "https://www.linkedin.com/in/ritikkumar34/",
       "Shafe": "https://www.linkedin.com/in/shafe12/"
     };
-    return linkedInMapping[member] || "#";
+    return validateUrl(linkedInMapping[member] || "#");
   });
 
   return (
@@ -421,6 +441,81 @@ export default function HackathonDetail({ params }: { params: Promise<{ id: stri
                 </pre>
               </div>
             </motion.section>
+
+            {/* Team Members Section */}
+            {teamMembers.length > 0 && (
+              <motion.section
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <h2 className="text-2xl font-bold mb-6">Team Members</h2>
+                <div className="bg-muted/50 rounded-lg p-6 border border-border/50">
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    {teamMembers.map((member: string, index: number) => {
+                      const linkedInUrl = memberLinkedInUrls[index] || "#";
+                      const photoSrc = memberProfilePhotos[index]?.startsWith('/assets') 
+                        ? memberProfilePhotos[index] 
+                        : `/assets/images/${memberProfilePhotos[index] || 'default-avatar.png'}`;
+                      
+                      const memberCard = (
+                        <div className="text-center bg-background/50 p-4 rounded-lg hover:shadow-lg transition-all duration-300 border border-border/30">
+                          <div className="mb-3">
+                            <Image
+                              src={photoSrc}
+                              alt={`${member} profile photo`}
+                              width={80}
+                              height={80}
+                              className="w-20 h-20 rounded-full mx-auto object-cover border-2 border-border/50 hover:border-primary/50 transition-colors"
+                              onError={(e) => {
+                                const target = e.target as HTMLImageElement;
+                                target.src = '/assets/images/default-avatar.png';
+                              }}
+                            />
+                            {linkedInUrl !== "#" && (
+                              <div className="mt-2">
+                                <ExternalLink className="h-4 w-4 text-muted-foreground hover:text-primary mx-auto" />
+                              </div>
+                            )}
+                          </div>
+                          <h4 className="font-medium text-sm text-foreground mb-1">{member}</h4>
+                          {linkedInUrl !== "#" && (
+                            <p className="text-xs text-muted-foreground">View LinkedIn Profile</p>
+                          )}
+                        </div>
+                      );
+
+                      return linkedInUrl !== "#" ? (
+                        <motion.a
+                          key={index}
+                          href={linkedInUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6, delay: 0.1 * index }}
+                        >
+                          {memberCard}
+                        </motion.a>
+                      ) : (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6, delay: 0.1 * index }}
+                          whileHover={{ scale: 1.05 }}
+                        >
+                          {memberCard}
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </motion.section>
+            )}
 
             {/* Technologies Used */}
             <motion.section
@@ -525,35 +620,58 @@ export default function HackathonDetail({ params }: { params: Promise<{ id: stri
                     <div className="text-sm font-medium mb-2">Team Members</div>
                     {teamMembers.length > 0 ? (
                       <div className="grid grid-cols-2 gap-3">
-                        {teamMembers.map((member: string, index: number) => (
-                          <motion.a
-                            key={index}
-                            href={memberLinkedInUrls[index]}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-2 p-2 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors group"
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                          >
-                            <div className="relative">
-                              <Image
-                                src={memberProfilePhotos[index]}
-                                alt={`${member} profile photo`}
-                                width={32}
-                                height={32}
-                                className="w-8 h-8 rounded-full object-cover border border-border/50 group-hover:border-primary/50 transition-colors"
-                                onError={(e) => {
-                                  const target = e.target as HTMLImageElement;
-                                  target.src = '/assets/images/default-avatar.png';
-                                }}
-                              />
-                              <ExternalLink className="h-3 w-3 text-muted-foreground group-hover:text-primary absolute -top-1 -right-1 bg-background rounded-full p-0.5" />
+                        {teamMembers.map((member: string, index: number) => {
+                          const linkedInUrl = memberLinkedInUrls[index] || "#";
+                          const photoSrc = memberProfilePhotos[index]?.startsWith('/assets') 
+                            ? memberProfilePhotos[index] 
+                            : `/assets/images/${memberProfilePhotos[index] || 'default-avatar.png'}`;
+                          
+                          const memberContent = (
+                            <div className="flex items-center gap-2 p-2 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors group">
+                              <div className="relative">
+                                <Image
+                                  src={photoSrc}
+                                  alt={`${member} profile photo`}
+                                  width={32}
+                                  height={32}
+                                  className="w-8 h-8 rounded-full object-cover border border-border/50 group-hover:border-primary/50 transition-colors"
+                                  onError={(e) => {
+                                    const target = e.target as HTMLImageElement;
+                                    target.src = '/assets/images/default-avatar.png';
+                                  }}
+                                />
+                                {linkedInUrl !== "#" && (
+                                  <ExternalLink className="h-3 w-3 text-muted-foreground group-hover:text-primary absolute -top-1 -right-1 bg-background rounded-full p-0.5" />
+                                )}
+                              </div>
+                              <span className="text-xs font-medium text-foreground group-hover:text-primary transition-colors">
+                                {member}
+                              </span>
                             </div>
-                            <span className="text-xs font-medium text-foreground group-hover:text-primary transition-colors">
-                              {member}
-                            </span>
-                          </motion.a>
-                        ))}
+                          );
+
+                          return linkedInUrl !== "#" ? (
+                            <motion.a
+                              key={index}
+                              href={linkedInUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="block"
+                              whileHover={{ scale: 1.02 }}
+                              whileTap={{ scale: 0.98 }}
+                            >
+                              {memberContent}
+                            </motion.a>
+                          ) : (
+                            <motion.div
+                              key={index}
+                              whileHover={{ scale: 1.02 }}
+                              whileTap={{ scale: 0.98 }}
+                            >
+                              {memberContent}
+                            </motion.div>
+                          );
+                        })}
                       </div>
                     ) : (
                       <span className="text-sm">{hackathon.team}</span>

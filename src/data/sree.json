@@ -122,7 +122,19 @@
       "description": "A comprehensive agricultural platform with AI‑powered crop detection, growth monitoring, and market insights.",
       "duration": "3 months",
       "teamSize": 4,
-      "Members" : ["K Sree Charan", "Bighnesh Kumar Sahoo", "Shubham Pandey", "Sarthak Awasthi"],    
+      "Members" : ["K Sree Charan", "Bighnesh Kumar Sahoo", "Shubham Pandey", "Sarthak Awasthi"],
+      "member_profile_photos": [
+        "member-photoes/Ksreecharan.jpg",
+        "member-photoes/Bighnesh.jpg",
+        "member-photoes/Shubham.jpg",
+        "member-photoes/Sarthak.jpg"
+      ],
+      "member_linkedin_urls": [
+        "https://www.linkedin.com/in/sree9484/",
+        "https://www.linkedin.com/in/bighnesh-kumar-sahoo/",
+        "https://www.linkedin.com/in/shubhampandey777/",
+        "https://www.linkedin.com/in/sarthak-awasthi/"
+      ],    
       "Project_photo" : [
         "projects/agrivision/apiofondemand.png",
         "projects/agrivision/cropdetails.png",
@@ -308,8 +320,27 @@
         "monthYear": "November 2023",
         "host": "Google Developer Community",
         "teamSize": 4,
-        "event_photos": ["devfest_presentation.jpg", "devfest_demo.jpg", "devfest_award.jpg"],
-        "team_photos": ["devfest_team1.jpg", "devfest_team2.jpg", "devfest_team3.jpg", "devfest_team4.jpg"],
+        "event_photos": [
+          "hackathons/devfest/1.jpg",
+          "hackathons/devfest/2.jpg",
+          "hackathons/devfest/3.jpg",
+          "hackathons/devfest/4.jpg",
+          "hackathons/devfest/5.jpg",
+          "hackathons/devfest/main.jpg"
+        ],
+        "members": ["Amit Gupta", "K Sree Charan", "Badal Kumar", "Rehan Mittal"],
+        "member_profile_photos": [
+          "member-photoes/Amit.jpg",
+          "member-photoes/Ksreecharan.jpg",
+          "member-photoes/Badal.jpg",
+          "member-photoes/Rehan.jpg"
+        ],
+        "member_linkedin_urls": [
+          "https://www.linkedin.com/in/amit-gupta-1011a4253/",
+          "https://www.linkedin.com/in/sree9484/",
+          "https://www.linkedin.com/in/badal-kumar/",
+          "https://www.linkedin.com/in/rehanmittal/"
+        ],
         "technologies": ["React", "Node.js", "AI/ML", "IoT"],
         "awards": ["Best Innovation Award", "People's Choice Award", "₹50,000 Prize Money"]
       },

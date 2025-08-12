@@ -6,6 +6,26 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { use } from "react";
+import sreeData from "@/data/sree.json";
+
+// Helper function to get project data from JSON
+const getProjectFromJSON = (id: string) => {
+  const projectMappings: { [key: string]: string } = {
+    "agrivision": "AgriVision",
+    "health-buddy": "Health Buddy",
+    "study-buddy": "Study Buddy",
+    "sarthi": "Sarthi",
+    "suraksha-suchak": "Suraksha Suchak",
+    "code-off-duty": "Code Off Duty"
+  };
+  
+  const projectName = projectMappings[id];
+  if (!projectName) return null;
+  
+  return sreeData.projects.find(project => 
+    project.name.toLowerCase().includes(projectName.toLowerCase())
+  );
+};
 
 // Project data with all images and details
 const projectsData = {
