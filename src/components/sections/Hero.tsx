@@ -244,10 +244,10 @@ const Hero = () => {
               className="flex gap-4"
             >
               {[
-                { icon: Github, href: "https://github.com", color: "hover:bg-gray-100 dark:hover:bg-gray-800" },
-                { icon: Linkedin, href: "https://linkedin.com", color: "hover:bg-blue-100 dark:hover:bg-blue-900/30" },
-                { icon: Mail, href: "mailto:example@email.com", color: "hover:bg-green-100 dark:hover:bg-green-900/30" }
-              ].map(({ icon: Icon, href, color }, index) => (
+                { icon: Github, href: "https://github.com/SreeCharan1234/", color: "hover:bg-gray-100 dark:hover:bg-gray-800", iconColor: "text-gray-800 dark:text-white" },
+                { icon: Linkedin, href: "https://www.linkedin.com/in/sree9484/", color: "hover:bg-blue-100 dark:hover:bg-blue-900/30", iconColor: "text-blue-700 dark:text-blue-300" },
+                { icon: Mail, href: "mailto:sreecharan9484@gmail.com", color: "hover:bg-green-100 dark:hover:bg-green-900/30", iconColor: "text-green-700 dark:text-green-300" }
+              ].map(({ icon: Icon, href, color, iconColor }, index) => (
                 <motion.a
                   key={index}
                   href={href}
@@ -260,7 +260,7 @@ const Hero = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: 0.9 + index * 0.1 }}
                 >
-                  <Icon className="h-5 w-5" />
+                  <Icon className={`h-5 w-5 ${iconColor}`} />
                 </motion.a>
               ))}
             </motion.div>
@@ -390,14 +390,26 @@ const Hero = () => {
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         >
           <motion.div
+            onClick={() => {
+              document.getElementById('about')?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }}
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="p-2 rounded-full border-2 border-blue-300 dark:border-blue-600 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-lg"
+            className="p-2 rounded-full border-2 border-blue-300 dark:border-blue-600 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-lg cursor-pointer hover:scale-110 transition-transform"
           >
             <ArrowDown className="h-5 w-5 text-blue-600 dark:text-blue-400" />
           </motion.div>
           <motion.p
-            className="text-xs text-gray-500 dark:text-gray-400 mt-2 text-center"
+            onClick={() => {
+              document.getElementById('about')?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }}
+            className="text-xs text-gray-500 dark:text-gray-400 mt-2 text-center cursor-pointer"
             animate={{ opacity: [0.5, 1, 0.5] }}
             transition={{ duration: 2, repeat: Infinity }}
           >

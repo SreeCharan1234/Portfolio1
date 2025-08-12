@@ -185,11 +185,11 @@ ${hackathon.members ? `Team Members: ${hackathon.members.join(", ")}` : ""}`,
       >
         <motion.button
           onClick={() => setIsOpen(true)}
-          className="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+            className="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
           whileHover={{ scale: 1.1, rotate: 360 }}
           whileTap={{ scale: 0.9 }}
         >
-          <MessageCircle className="h-6 w-6" />
+            <MessageCircle className="h-6 w-6 text-blue-700 dark:text-blue-300" />
         </motion.button>
         
         {/* Notification Badge */}
@@ -224,7 +224,7 @@ ${hackathon.members ? `Team Members: ${hackathon.members.join(", ")}` : ""}`,
               <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-4 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="relative">
-                    <Bot className="h-8 w-8" />
+                    <Bot className="h-8 w-8 text-purple-700 dark:text-purple-300" />
                     <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-white"></div>
                   </div>
                   <div>
@@ -238,7 +238,7 @@ ${hackathon.members ? `Team Members: ${hackathon.members.join(", ")}` : ""}`,
                   title="Close chat"
                   aria-label="Close chat"
                 >
-                  <X className="h-5 w-5" />
+                  <X className="h-5 w-5 text-gray-700 dark:text-gray-300" />
                 </button>
               </div>
 
@@ -261,10 +261,10 @@ ${hackathon.members ? `Team Members: ${hackathon.members.join(", ")}` : ""}`,
                     >
                       <div className="flex items-start gap-2">
                         {message.sender === "bot" && (
-                          <Bot className="h-4 w-4 mt-1 flex-shrink-0" />
+                          <Bot className="h-4 w-4 mt-1 flex-shrink-0 text-purple-700 dark:text-purple-300" />
                         )}
                         {message.sender === "user" && (
-                          <User className="h-4 w-4 mt-1 flex-shrink-0 text-white/80" />
+                          <User className="h-4 w-4 mt-1 flex-shrink-0 text-blue-700 dark:text-blue-300" />
                         )}
                         <div className="flex-1">
                           <p className="text-sm leading-relaxed">{message.text}</p>
@@ -366,7 +366,7 @@ ${hackathon.members ? `Team Members: ${hackathon.members.join(", ")}` : ""}`,
                     animate={{ opacity: 1, y: 0 }}
                   >
                     <div className="bg-muted p-3 rounded-2xl flex items-center gap-2">
-                      <Bot className="h-4 w-4" />
+                      <Bot className="h-4 w-4 text-purple-700 dark:text-purple-300" />
                       <div className="flex gap-1">
                         <motion.div
                           className="w-2 h-2 bg-gray-400 rounded-full"
@@ -408,7 +408,7 @@ ${hackathon.members ? `Team Members: ${hackathon.members.join(", ")}` : ""}`,
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <Send className="h-4 w-4" />
+                    <Send className="h-4 w-4 text-blue-700 dark:text-blue-300" />
                   </motion.button>
                 </div>
                 
