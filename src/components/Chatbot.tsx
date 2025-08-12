@@ -36,6 +36,31 @@ const Chatbot = () => {
 
   // Helper function to get project details
   const getProjectDetails = (projectName: string) => {
+    // Special case for Sarthi
+    if (projectName.toLowerCase().includes("sarthi")) {
+      const sarthiProject = sreeData.projects.find(p => p.name.toLowerCase() === "sarthi");
+      if (sarthiProject) {
+        const formattedImages = sarthiProject.Project_photo.slice(0, 2).map(img => 
+          img.startsWith('/') ? img : `/assets/images/${img}`
+        );
+        
+        console.log("Sarthi project found!", sarthiProject.name);
+        console.log("Sarthi images:", formattedImages);
+        
+        return {
+          text: `${sarthiProject.name} is a ${sarthiProject.category} project. ${sarthiProject.description} 
+          
+📅 Duration: ${sarthiProject.duration}
+👥 Team Size: ${sarthiProject.teamSize}
+🔧 Technologies: ${sarthiProject.technologies.join(", ")}
+✨ Features: ${sarthiProject.features.join(", ")}`,
+          images: formattedImages,
+          teamMembers: undefined
+        };
+      }
+    }
+    
+    // Handle other projects
     const project = sreeData.projects.find(p => 
       p.name.toLowerCase().includes(projectName.toLowerCase())
     );
@@ -136,7 +161,7 @@ ${hackathon.members ? `Team Members: ${hackathon.members.join(", ")}` : ""}`,
       // Enhanced keyword matching with image support
       if (lowercaseInput.includes("skill") || lowercaseInput.includes("technology") || lowercaseInput.includes("tech")) {
         response = predefinedResponses.skills;
-      } else if (lowercaseInput.includes("project") && !lowercaseInput.includes("agrivision") && !lowercaseInput.includes("health") && !lowercaseInput.includes("study buddy")) {
+      } else if (lowercaseInput.includes("project") && !lowercaseInput.includes("agrivision") && !lowercaseInput.includes("health") && !lowercaseInput.includes("study buddy") && !lowercaseInput.includes("sarthi")) {
         response = predefinedResponses.projects;
       } else if (lowercaseInput.includes("experience") || lowercaseInput.includes("job") || lowercaseInput.includes("career")) {
         response = predefinedResponses.experience;
@@ -150,6 +175,24 @@ ${hackathon.members ? `Team Members: ${hackathon.members.join(", ")}` : ""}`,
         response = predefinedResponses.certifications;
       } else if (lowercaseInput.includes("hello") || lowercaseInput.includes("hi") || lowercaseInput.includes("hey")) {
         response = "Hello! Nice to meet you! I'm here to help you learn more about K Sree Charan. What would you like to know?";
+      } else if (lowercaseInput.includes("sarthi")) {
+        // Direct handling for Sarthi project
+        const sarthiProject = sreeData.projects.find(p => p.name.toLowerCase() === "sarthi");
+        if (sarthiProject) {
+          const formattedImages = sarthiProject.Project_photo.slice(0, 2).map(img => 
+            img.startsWith('/') ? img : `/assets/images/${img}`
+          );
+          
+          response = `Sarthi is a ${sarthiProject.category} project. ${sarthiProject.description}
+          
+📅 Duration: ${sarthiProject.duration}
+👥 Team Size: ${sarthiProject.teamSize}
+🔧 Technologies: ${sarthiProject.technologies.join(", ")}
+✨ Features: ${sarthiProject.features.join(", ")}`;
+
+          images = formattedImages;
+          console.log("Sarthi images:", images);
+        }
       }
       
       // Specific Project Matching using helper function
@@ -308,6 +351,7 @@ ${hackathon.members ? `Team Members: ${hackathon.members.join(", ")}` : ""}`,
                                         height={128}
                                         className="w-full h-auto max-h-32 object-cover rounded-lg border border-border/20"
                                         fallbackSrc="/assets/images/default-avatar.png"
+                                        priority
                                       />
                                     </motion.div>
                                   );
