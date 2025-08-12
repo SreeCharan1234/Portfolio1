@@ -353,7 +353,7 @@ const Chatbot = () => {
                 
                 {/* Quick Actions */}
                 <div className="flex flex-wrap gap-2 mt-3">
-                  {["Skills", "Projects", "Experience", "Contact"].map((action) => (
+                  {["Skills", "Experience", "Contact"].map((action) => (
                     <motion.button
                       key={action}
                       onClick={() => setInputText(action.toLowerCase())}
@@ -364,37 +364,89 @@ const Chatbot = () => {
                       {action}
                     </motion.button>
                   ))}
+                  
+                  {/* Projects Toggle Button */}
+                  <motion.button
+                    onClick={() => setShowProjects(!showProjects)}
+                    className="px-3 py-1 text-xs bg-blue-100 dark:bg-blue-900/30 hover:bg-blue-200 dark:hover:bg-blue-900/50 rounded-full border border-blue-200 dark:border-blue-800 transition-colors text-blue-700 dark:text-blue-300"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Projects {showProjects ? "▼" : "▶"}
+                  </motion.button>
+                  
+                  {/* Hackathons Toggle Button */}
+                  <motion.button
+                    onClick={() => setShowHackathons(!showHackathons)}
+                    className="px-3 py-1 text-xs bg-purple-100 dark:bg-purple-900/30 hover:bg-purple-200 dark:hover:bg-purple-900/50 rounded-full border border-purple-200 dark:border-purple-800 transition-colors text-purple-700 dark:text-purple-300"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Hackathons {showHackathons ? "▼" : "▶"}
+                  </motion.button>
                 </div>
                 
-                {/* Project Quick Actions */}
-                <div className="flex flex-wrap gap-2 mt-2">
-                  {["AgriVision", "Health Buddy", "Study Buddy"].map((project) => (
-                    <motion.button
-                      key={project}
-                      onClick={() => setInputText(project)}
-                      className="px-2 py-1 text-xs bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/30 rounded-full border border-blue-200 dark:border-blue-800 transition-colors text-blue-700 dark:text-blue-300"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
+                {/* Project Quick Actions - Expandable */}
+                <AnimatePresence>
+                  {showProjects && (
+                    <motion.div
+                      className="flex flex-wrap gap-2 mt-2"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
                     >
-                      {project}
-                    </motion.button>
-                  ))}
-                </div>
+                      {["AgriVision", "Health Buddy", "Study Buddy", "Code Off Duty", "Sarthi", "Surasksha Suchak"].map((project) => (
+                        <motion.button
+                          key={project}
+                          onClick={() => {
+                            setInputText(project);
+                            setShowProjects(false); // Auto-collapse after selection
+                          }}
+                          className="px-2 py-1 text-xs bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/30 rounded-full border border-blue-200 dark:border-blue-800 transition-colors text-blue-700 dark:text-blue-300"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.2, delay: 0.1 }}
+                        >
+                          {project}
+                        </motion.button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
                 
-                {/* Hackathon Quick Actions */}
-                <div className="flex flex-wrap gap-2 mt-2">
-                  {["DevFest", "Microsoft", "Arena"].map((hackathon) => (
-                    <motion.button
-                      key={hackathon}
-                      onClick={() => setInputText(hackathon)}
-                      className="px-2 py-1 text-xs bg-purple-50 dark:bg-purple-900/20 hover:bg-purple-100 dark:hover:bg-purple-900/30 rounded-full border border-purple-200 dark:border-purple-800 transition-colors text-purple-700 dark:text-purple-300"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
+                {/* Hackathon Quick Actions - Expandable */}
+                <AnimatePresence>
+                  {showHackathons && (
+                    <motion.div
+                      className="flex flex-wrap gap-2 mt-2"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
                     >
-                      {hackathon}
-                    </motion.button>
-                  ))}
-                </div>
+                      {["DevFest", "Microsoft", "Arena", "Build-a-thon", "Code-a-haunt", "Code of Duty", "Coding Blocks LPU", "Kriyeta 3.0"].map((hackathon) => (
+                        <motion.button
+                          key={hackathon}
+                          onClick={() => {
+                            setInputText(hackathon);
+                            setShowHackathons(false); // Auto-collapse after selection
+                          }}
+                          className="px-2 py-1 text-xs bg-purple-50 dark:bg-purple-900/20 hover:bg-purple-100 dark:hover:bg-purple-900/30 rounded-full border border-purple-200 dark:border-purple-800 transition-colors text-purple-700 dark:text-purple-300"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.2, delay: 0.1 }}
+                        >
+                          {hackathon}
+                        </motion.button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </motion.div>
           </motion.div>
