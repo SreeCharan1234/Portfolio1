@@ -40,9 +40,8 @@ const Chatbot = () => {
     if (projectName.toLowerCase().includes("sarthi")) {
       const sarthiProject = sreeData.projects.find(p => p.name.toLowerCase() === "sarthi");
       if (sarthiProject) {
-        const formattedImages = sarthiProject.Project_photo.slice(0, 2).map(img => 
-          img.startsWith('/') ? img : `/assets/images/${img}`
-        );
+        // Use formatImagePath helper for consistent image path handling
+        const formattedImages = sarthiProject.Project_photo.slice(0, 2).map(img => formatImagePath(img));
         
         console.log("Sarthi project found!", sarthiProject.name);
         console.log("Sarthi images:", formattedImages);
@@ -65,16 +64,12 @@ const Chatbot = () => {
       p.name.toLowerCase().includes(projectName.toLowerCase())
     );
     if (project) {
-      // Ensure all image paths are prefixed with public/assets
-      const formattedImages = project.Project_photo.slice(0, 2).map(img => 
-        img.startsWith('/') ? img : `/assets/images/${img}`
-      );
+      // Use formatImagePath helper for consistent image path handling
+      const formattedImages = project.Project_photo.slice(0, 2).map(img => formatImagePath(img));
       
-      // Format team member photos similarly
+      // Format team member photos similarly using the helper
       const memberPhotos = project.member_profile_photos ? 
-        project.member_profile_photos.map(photo => 
-          photo.startsWith('/') ? photo : `/assets/images/${photo}`
-        ) : [];
+        project.member_profile_photos.map(photo => formatImagePath(photo)) : [];
         
       return {
         text: `${project.name} is a ${project.category} project. ${project.description} 
