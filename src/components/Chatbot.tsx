@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send, Bot, User } from "lucide-react";
-import Image from "next/image";
 import sreeData from "@/data/sree.json";
+import SafeImage from "./SafeImage";
 
 interface Message {
   id: string;
@@ -301,17 +301,13 @@ ${hackathon.members ? `Team Members: ${hackathon.members.join(", ")}` : ""}`,
                                       transition={{ duration: 0.3, delay: index * 0.1 }}
                                       className="relative overflow-hidden rounded-lg"
                                     >
-                                      <Image
+                                      <SafeImage
                                         src={image}
                                         alt={`Project/Hackathon screenshot ${index + 1}`}
                                         width={200}
                                         height={128}
                                         className="w-full h-auto max-h-32 object-cover rounded-lg border border-border/20"
-                                        onError={(e) => {
-                                          console.error(`Failed to load image: ${image}`);
-                                          const target = e.target as HTMLImageElement;
-                                          target.style.display = 'none';
-                                        }}
+                                        fallbackSrc="/assets/images/default-avatar.png"
                                       />
                                     </motion.div>
                                   );
@@ -362,17 +358,13 @@ ${hackathon.members ? `Team Members: ${hackathon.members.join(", ")}` : ""}`,
                                         title={`Connect with ${name} on LinkedIn`}
                                       >
                                         <div className="relative">
-                                          <Image
+                                          <SafeImage
                                             src={photoSrc || '/assets/images/default-avatar.png'}
                                             alt={`${name} profile photo`}
                                             width={50}
                                             height={50}
                                             className="w-12 h-12 rounded-full object-cover border-2 border-blue-200 dark:border-blue-700 hover:border-blue-400 dark:hover:border-blue-500 transition-colors"
-                                            onError={(e) => {
-                                              console.error(`Failed to load member photo: ${photoSrc}`);
-                                              const target = e.target as HTMLImageElement;
-                                              target.src = '/assets/images/default-avatar.png';
-                                            }}
+                                            fallbackSrc="/assets/images/default-avatar.png"
                                           />
                                           <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
                                             <span className="text-white text-xs">💼</span>
