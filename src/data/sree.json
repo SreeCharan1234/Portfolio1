@@ -146,7 +146,8 @@
         "projects/agrivision/seasibak cropPlanner.png",
         "projects/agrivision/voicetotext.png"
       ],
-      "githubLink": "https://github.com/yourusername/agri-vision",
+      "githubLink": "https://github.com/SreeCharan1234/agrivison",
+      "liveDemo": "https://agrivision-landing-page.vercel.app/",
       "technologies": ["React", "Node.js", "Python", "and more"],
       "features": ["AI‑powered plant disease detection", "Crop growth monitoring", "Market price predictions"]
     },
@@ -240,6 +241,8 @@
         "projects/study-buddy/signup.png",
         "projects/study-buddy/testyourself1.png"
       ],
+      "githubLink": "https://github.com/SreeCharan1234/CollegeBuddy",
+      "liveDemo": "https://college--buddy34.streamlit.app/",
       "technologies": ["React", "Node.js", "Socket.io", "and more"],
       "features": ["Interactive coding challenges", "Learning roadmaps", "1v1 coding competitions"]
     },
@@ -258,6 +261,8 @@
         "projects/sarthi/razor pay.png",
         "projects/sarthi/work.png"
       ],
+      "githubLink": "https://github.com/SreeCharan1234/indor-hackthon",
+      "liveDemo": "https://sarthi-logistics.vercel.app/",
       "technologies": ["React", "Node.js", "Razorpay", "and more"],
       "features": ["Real‑time tracking", "Payment gateway integration", "Route optimization"]
     },
@@ -277,7 +282,8 @@
         "projects/surasksha-suchak/7.jpg",
         "projects/surasksha-suchak/8.jpg"
       ],
-        
+      "githubLink": "https://github.com/SreeCharan1234/surasksha-suchak",
+      "liveDemo": "https://suraksha-suchak.streamlit.app/",
       "technologies": ["React", "Node.js", "WebRTC", "and more"],
       "features": ["Real‑time video monitoring", "Automatic threat detection", "Emergency alert system"]
     },
@@ -304,6 +310,8 @@
         "projects/code-off-duty/14.png",
         "projects/code-off-duty/15.png"
       ],
+      "githubLink": "https://github.com/SreeCharan1234/code-off-duty",
+      "liveDemo": "https://code-off-duty.vercel.app/",
       "technologies": ["React", "Node.js", "Judge0 API", "and more"],
       "features": ["Online code execution", "Contest management", "Real‑time leaderboards"]
     }
