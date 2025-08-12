@@ -3,12 +3,14 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send, Bot, User } from "lucide-react";
+import Image from "next/image";
 
 interface Message {
   id: string;
   text: string;
   sender: "user" | "bot";
   timestamp: Date;
+  images?: string[];
 }
 
 const Chatbot = () => {
@@ -16,22 +18,46 @@ const Chatbot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      text: "Hello! I'm K Sree Charan's AI assistant. I can help you learn more about his skills, projects, and experience. How can I assist you today?",
+      text: "Hello! I'm K Sree Charan's AI assistant. I can help you learn more about his skills, projects, and experience. Ask me about specific projects like 'AgriVision' or 'Health Buddy', or hackathons like 'DevFest' or 'Microsoft' to see detailed information with photos! How can I assist you today?",
       sender: "bot",
       timestamp: new Date(),
     },
   ]);
   const [inputText, setInputText] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const [showProjects, setShowProjects] = useState(false);
+  const [showHackathons, setShowHackathons] = useState(false);
 
   const predefinedResponses = {
     skills: "I have expertise in React, Node.js, TypeScript, MongoDB, Express.js, AWS, Python, TensorFlow, and many other modern technologies. I'm passionate about full-stack development and AI/ML solutions.",
-    projects: "Some of my notable projects include AgriVision (AI-powered agricultural platform), Health Buddy (ML-based health management), Study Buddy (educational platform), and Surasksha Suchak (security monitoring system). Each project showcases different aspects of my technical skills.",
+    projects: "Some of my notable projects include AgriVision (AI-powered agricultural platform), Health Buddy (ML-based health management), Study Buddy (educational platform), Code Off Duty (task management), Sarthi (navigation app), and Surasksha Suchak (security monitoring system). Ask me about any specific project to see details and screenshots!",
     experience: "I'm currently working as a Full Stack Developer at MAQ Software Solutions in Hyderabad. I have previous experience as a Software Developer Intern and have also worked as a Freelance Web Developer, completing 10+ client projects.",
     education: "I have a strong educational background in Computer Science with focus on software development and emerging technologies. I've also earned various certifications in cloud computing, web development, and AI/ML.",
-    hackathons: "I'm an active participant in hackathons and competitive programming. I've won first place at DevFest, second place at Microsoft Hackathon, and participated in 8+ hackathons with 5 wins/top places.",
+    hackathons: "I'm an active participant in hackathons and competitive programming. I've participated in DevFest, Microsoft Hackathon, Arena, Build-a-thon, Code-a-haunt, Code of Duty, Coding Blocks LPU, Kriyeta 3.0, and many others with multiple wins! Ask me about any specific hackathon to see photos and details.",
     contact: "You can reach me through the contact form on this website, or connect with me on LinkedIn and GitHub. I'm always open to discussing new opportunities and collaborations!",
-    default: "That's an interesting question! I can tell you about my skills, projects, experience, education, hackathons, or how to contact me. What would you like to know more about?",
+    
+    // Detailed Project Responses
+    agrivision: "AgriVision is an AI-powered agricultural platform that helps farmers with crop planning, disease detection, and yield prediction. It features plant AI recognition, crop details analysis, ecosystem monitoring, and voice-to-text functionality for easy interaction.",
+    "health buddy": "Health Buddy is an ML-based health management system that provides personalized health recommendations, tracks vital signs, and offers intelligent health insights using machine learning algorithms.",
+    "study buddy": "Study Buddy is an educational platform designed to enhance learning experiences with interactive features, progress tracking, and personalized study recommendations.",
+    "code off duty": "Code Off Duty is a comprehensive task management and productivity application with modern UI/UX, featuring project tracking, team collaboration, and efficient workflow management.",
+    sarthi: "Sarthi is a navigation and assistance application designed to help users with location-based services, route optimization, and real-time guidance.",
+    "surasksha suchak": "Surasksha Suchak is a security monitoring system that provides real-time surveillance, threat detection, and alert mechanisms for enhanced security management.",
+    
+    // Detailed Hackathon Responses
+    devfest: "DevFest was an amazing experience where I won 1st place! It was a Google Developer Groups event focused on modern web technologies and innovative solutions.",
+    microsoft: "Microsoft Hackathon was incredibly competitive where I secured 2nd place. The event focused on cloud solutions and AI integration using Microsoft Azure services.",
+    arena: "Arena hackathon was a competitive programming and development event where I showcased problem-solving skills and technical expertise.",
+    "build a thon": "Build-a-thon was a construction and development themed hackathon focusing on creating practical solutions for real-world problems.",
+    "build-a-thon": "Build-a-thon was a construction and development themed hackathon focusing on creating practical solutions for real-world problems.",
+    "code a haunt": "Code-a-haunt was a Halloween-themed coding competition with creative challenges and spooky programming problems.",
+    "code-a-haunt": "Code-a-haunt was a Halloween-themed coding competition with creative challenges and spooky programming problems.",
+    "code of duty": "Code of Duty was a military-themed hackathon focusing on strategic programming challenges and tactical problem-solving.",
+    "coding blocks lpu": "Coding Blocks LPU hackathon was organized at Lovely Professional University, featuring algorithmic challenges and development competitions.",
+    kriyeta: "Kriyeta 3.0 was a major technical fest hackathon with multiple rounds of competition, showcasing innovation and technical excellence.",
+    "kriyeta 3.0": "Kriyeta 3.0 was a major technical fest hackathon with multiple rounds of competition, showcasing innovation and technical excellence.",
+    
+    default: "That's an interesting question! I can tell you about my skills, projects, experience, education, hackathons, or how to contact me. You can also ask about specific projects like 'AgriVision', 'Health Buddy', 'Study Buddy', etc., or specific hackathons like 'DevFest', 'Microsoft', 'Arena', etc. What would you like to know more about?",
   };
 
   const handleSend = async () => {
@@ -52,8 +78,9 @@ const Chatbot = () => {
     setTimeout(() => {
       const lowercaseInput = inputText.toLowerCase();
       let response = predefinedResponses.default;
+      let images: string[] = [];
 
-      // Simple keyword matching
+      // Enhanced keyword matching with image support
       if (lowercaseInput.includes("skill") || lowercaseInput.includes("technology") || lowercaseInput.includes("tech")) {
         response = predefinedResponses.skills;
       } else if (lowercaseInput.includes("project") || lowercaseInput.includes("work") || lowercaseInput.includes("portfolio")) {
@@ -69,12 +96,61 @@ const Chatbot = () => {
       } else if (lowercaseInput.includes("hello") || lowercaseInput.includes("hi") || lowercaseInput.includes("hey")) {
         response = "Hello! Nice to meet you! I'm here to help you learn more about K Sree Charan. What would you like to know?";
       }
+      
+      // Specific Project Matching
+      else if (lowercaseInput.includes("agrivision") || lowercaseInput.includes("agri vision")) {
+        response = predefinedResponses.agrivision;
+        images = ["/assets/images/projects/agrivision/landingpage.png", "/assets/images/projects/agrivision/plantai.png"];
+      } else if (lowercaseInput.includes("health buddy") || lowercaseInput.includes("healthbuddy")) {
+        response = predefinedResponses["health buddy"];
+        images = ["/assets/images/projects/health-buddy/dashbord.png", "/assets/images/projects/health-buddy/login.png"];
+      } else if (lowercaseInput.includes("study buddy") || lowercaseInput.includes("studybuddy")) {
+        response = predefinedResponses["study buddy"];
+        images = ["/assets/images/projects/study-buddy/dashboard.png", "/assets/images/projects/study-buddy/codeeditor.png"];
+      } else if (lowercaseInput.includes("code off duty") || lowercaseInput.includes("codeoffduty")) {
+        response = predefinedResponses["code off duty"];
+        images = ["/assets/images/projects/code-off-duty/1.png", "/assets/images/projects/code-off-duty/2.png"];
+      } else if (lowercaseInput.includes("sarthi")) {
+        response = predefinedResponses.sarthi;
+        images = ["/assets/images/projects/sarthi/1.png", "/assets/images/projects/sarthi/2.png"];
+      } else if (lowercaseInput.includes("surasksha suchak") || lowercaseInput.includes("surasksha") || lowercaseInput.includes("suchak")) {
+        response = predefinedResponses["surasksha suchak"];
+        images = ["/assets/images/projects/surasksha-suchak/1.png", "/assets/images/projects/surasksha-suchak/2.png"];
+      }
+      
+      // Specific Hackathon Matching
+      else if (lowercaseInput.includes("devfest") || lowercaseInput.includes("dev fest")) {
+        response = predefinedResponses.devfest;
+        images = ["/assets/images/hackathons/devfest/1.jpg", "/assets/images/hackathons/devfest/2.jpg"];
+      } else if (lowercaseInput.includes("microsoft")) {
+        response = predefinedResponses.microsoft;
+        images = ["/assets/images/hackathons/microsoft/1.jpg", "/assets/images/hackathons/microsoft/2.jpg"];
+      } else if (lowercaseInput.includes("arena")) {
+        response = predefinedResponses.arena;
+        images = ["/assets/images/hackathons/arena/1.jpg", "/assets/images/hackathons/arena/2.jpg"];
+      } else if (lowercaseInput.includes("build") && (lowercaseInput.includes("thon") || lowercaseInput.includes("a-thon"))) {
+        response = predefinedResponses["build-a-thon"];
+        images = ["/assets/images/hackathons/build-a-thon/2.jpg", "/assets/images/hackathons/build-a-thon/3.jpg"];
+      } else if (lowercaseInput.includes("code") && lowercaseInput.includes("haunt")) {
+        response = predefinedResponses["code-a-haunt"];
+        images = ["/assets/images/hackathons/code-a-haunt/main.jpg", "/assets/images/hackathons/code-a-haunt/main.jpg"];
+      } else if (lowercaseInput.includes("code") && lowercaseInput.includes("duty")) {
+        response = predefinedResponses["code of duty"];
+        images = ["/assets/images/hackathons/code-of-duty/1.jpg", "/assets/images/hackathons/code-of-duty/2.jpg"];
+      } else if (lowercaseInput.includes("coding blocks") || lowercaseInput.includes("lpu")) {
+        response = predefinedResponses["coding blocks lpu"];
+        images = ["/assets/images/hackathons/codingblockslpu/1.jpg", "/assets/images/hackathons/codingblockslpu/2.jpg"];
+      } else if (lowercaseInput.includes("kriyeta")) {
+        response = predefinedResponses["kriyeta 3.0"];
+        images = ["/assets/images/hackathons/kriyeta3.0/1.jpg", "/assets/images/hackathons/kriyeta3.0/2.jpg"];
+      }
 
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
         text: response,
         sender: "bot",
         timestamp: new Date(),
+        images: images.length > 0 ? images : undefined,
       };
 
       setMessages((prev) => [...prev, botMessage]);
@@ -150,6 +226,8 @@ const Chatbot = () => {
                 <button
                   onClick={() => setIsOpen(false)}
                   className="hover:bg-white/20 p-2 rounded-full transition-colors"
+                  title="Close chat"
+                  aria-label="Close chat"
                 >
                   <X className="h-5 w-5" />
                 </button>
@@ -179,7 +257,38 @@ const Chatbot = () => {
                         {message.sender === "user" && (
                           <User className="h-4 w-4 mt-1 flex-shrink-0 text-white/80" />
                         )}
-                        <p className="text-sm leading-relaxed">{message.text}</p>
+                        <div className="flex-1">
+                          <p className="text-sm leading-relaxed">{message.text}</p>
+                          
+                          {/* Display Images */}
+                          {message.images && message.images.length > 0 && (
+                            <div className="mt-3 space-y-2">
+                              <div className="grid grid-cols-1 gap-2">
+                                {message.images.map((image, index) => (
+                                  <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                                    className="relative overflow-hidden rounded-lg"
+                                  >
+                                    <Image
+                                      src={image}
+                                      alt={`Project/Hackathon screenshot ${index + 1}`}
+                                      width={200}
+                                      height={128}
+                                      className="w-full h-auto max-h-32 object-cover rounded-lg border border-border/20"
+                                      onError={(e) => {
+                                        const target = e.target as HTMLImageElement;
+                                        target.style.display = 'none';
+                                      }}
+                                    />
+                                  </motion.div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
                       </div>
                       <p className={`text-xs mt-2 ${message.sender === "user" ? "text-white/70" : "text-muted-foreground"}`}>
                         {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -253,6 +362,36 @@ const Chatbot = () => {
                       whileTap={{ scale: 0.95 }}
                     >
                       {action}
+                    </motion.button>
+                  ))}
+                </div>
+                
+                {/* Project Quick Actions */}
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {["AgriVision", "Health Buddy", "Study Buddy"].map((project) => (
+                    <motion.button
+                      key={project}
+                      onClick={() => setInputText(project)}
+                      className="px-2 py-1 text-xs bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/30 rounded-full border border-blue-200 dark:border-blue-800 transition-colors text-blue-700 dark:text-blue-300"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      {project}
+                    </motion.button>
+                  ))}
+                </div>
+                
+                {/* Hackathon Quick Actions */}
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {["DevFest", "Microsoft", "Arena"].map((hackathon) => (
+                    <motion.button
+                      key={hackathon}
+                      onClick={() => setInputText(hackathon)}
+                      className="px-2 py-1 text-xs bg-purple-50 dark:bg-purple-900/20 hover:bg-purple-100 dark:hover:bg-purple-900/30 rounded-full border border-purple-200 dark:border-purple-800 transition-colors text-purple-700 dark:text-purple-300"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      {hackathon}
                     </motion.button>
                   ))}
                 </div>
