@@ -1,11 +1,33 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowLeft, Trophy, Calendar, MapPin, Users, Award } from "lucide-react";
+import { ArrowLeft, Trophy, Calendar, MapPin, Users, Award, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { use } from "react";
+import sreeData from "@/data/sree.json";
+
+// Helper function to get hackathon data from JSON
+const getHackathonFromJSON = (id: string) => {
+  const hackathonMappings: { [key: string]: string } = {
+    "microsoft": "Microsoft Hackathon  OR  Code Cubicle",
+    "devfest": "DevFest",
+    "kriyeta": "Kriyeta 3.0",
+    "arena": "Arena",
+    "build-a-thon": "Build-a-thon",
+    "code-a-haunt": "Code-a-haunt",
+    "code-of-duty": "Code of Duty",
+    "coding-blocks-lpu": "Coding Blocks LPU"
+  };
+  
+  const eventName = hackathonMappings[id];
+  if (!eventName) return null;
+  
+  return sreeData.hackathons.events.find(event => 
+    event.event.toLowerCase().includes(eventName.toLowerCase())
+  );
+};
 
 // Hackathon data with detailed descriptions
 const hackathonsData = {
@@ -314,10 +336,38 @@ const hackathonsData = {
 export default function HackathonDetail({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params);
   const hackathon = hackathonsData[resolvedParams.id as keyof typeof hackathonsData];
+  const jsonHackathon = getHackathonFromJSON(resolvedParams.id);
 
   if (!hackathon) {
     notFound();
   }
+
+  // Use JSON data if available, otherwise fallback to hardcoded data
+  const teamMembers = jsonHackathon?.members || [];
+  const eventPhotos = jsonHackathon?.event_photos || hackathon.images;
+  
+  // Create member photos and LinkedIn URLs mapping
+  const memberProfilePhotos = teamMembers.map((member: string) => 
+    `/assets/images/member-photos/${member.replace(/\s+/g, '')}.jpg`
+  );
+  
+  const memberLinkedInUrls = teamMembers.map((member: string) => {
+    // Map member names to LinkedIn URLs (you can expand this mapping)
+    const linkedInMapping: { [key: string]: string } = {
+      "K Sree Charan": "https://www.linkedin.com/in/sree9484/",
+      "Shivani": "https://www.linkedin.com/in/satapathy-28-shivani/",
+      "Sushil": "https://www.linkedin.com/in/sushil-verma-/",
+      "Abhishek Kumar": "https://www.linkedin.com/in/abhishekkumar9870/",
+      "Shubham": "https://www.linkedin.com/in/shubhampandey777/",
+      "Amit Gupta": "https://www.linkedin.com/in/amit-gupta-1011a4253/",
+      "Rehan": "https://www.linkedin.com/in/rehanmittal/",
+      "Aman": "https://www.linkedin.com/in/aman-kumar-16j/",
+      "Hardik": "https://www.linkedin.com/in/hardikarorah/",
+      "Ritik": "https://www.linkedin.com/in/ritikkumar34/",
+      "Shafe": "https://www.linkedin.com/in/shafe12/"
+    };
+    return linkedInMapping[member] || "#";
+  });
 
   return (
     <div className="min-h-screen bg-background">
@@ -429,7 +479,7 @@ export default function HackathonDetail({ params }: { params: Promise<{ id: stri
             >
               <h3 className="text-lg font-bold mb-4">Event Gallery</h3>
               <div className="space-y-3">
-                {hackathon.images.map((image, index) => (
+                {eventPhotos.map((image: string, index: number) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, scale: 0.9 }}
@@ -469,9 +519,46 @@ export default function HackathonDetail({ params }: { params: Promise<{ id: stri
                   <MapPin className="h-4 w-4 text-muted-foreground" />
                   <span className="text-sm">{hackathon.location}</span>
                 </div>
-                <div className="flex items-center gap-3">
-                  <Users className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-sm">{hackathon.team}</span>
+                <div className="flex items-start gap-3">
+                  <Users className="h-4 w-4 text-muted-foreground mt-1" />
+                  <div className="flex-1">
+                    <div className="text-sm font-medium mb-2">Team Members</div>
+                    {teamMembers.length > 0 ? (
+                      <div className="grid grid-cols-2 gap-3">
+                        {teamMembers.map((member: string, index: number) => (
+                          <motion.a
+                            key={index}
+                            href={memberLinkedInUrls[index]}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 p-2 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors group"
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                          >
+                            <div className="relative">
+                              <Image
+                                src={memberProfilePhotos[index]}
+                                alt={`${member} profile photo`}
+                                width={32}
+                                height={32}
+                                className="w-8 h-8 rounded-full object-cover border border-border/50 group-hover:border-primary/50 transition-colors"
+                                onError={(e) => {
+                                  const target = e.target as HTMLImageElement;
+                                  target.src = '/assets/images/default-avatar.png';
+                                }}
+                              />
+                              <ExternalLink className="h-3 w-3 text-muted-foreground group-hover:text-primary absolute -top-1 -right-1 bg-background rounded-full p-0.5" />
+                            </div>
+                            <span className="text-xs font-medium text-foreground group-hover:text-primary transition-colors">
+                              {member}
+                            </span>
+                          </motion.a>
+                        ))}
+                      </div>
+                    ) : (
+                      <span className="text-sm">{hackathon.team}</span>
+                    )}
+                  </div>
                 </div>
               </div>
             </motion.div>

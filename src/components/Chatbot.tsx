@@ -12,6 +12,11 @@ interface Message {
   sender: "user" | "bot";
   timestamp: Date;
   images?: string[];
+  teamMembers?: {
+    names: string[];
+    photos: string[];
+    linkedinUrls: string[];
+  };
 }
 
 const Chatbot = () => {
@@ -38,11 +43,18 @@ const Chatbot = () => {
       return {
         text: `${project.name} is a ${project.category} project. ${project.description} 
         
-Duration: ${project.duration}
-Team Size: ${project.teamSize}
-Technologies: ${project.technologies.join(", ")}
-Features: ${project.features.join(", ")}`,
-        images: project.projectPhotos.slice(0, 2)
+📅 Duration: ${project.duration}
+👥 Team Size: ${project.teamSize}
+🔧 Technologies: ${project.technologies.join(", ")}
+✨ Features: ${project.features.join(", ")}
+
+🤝 Team Members: ${project.members ? project.members.join(", ") : "Not specified"}`,
+        images: project.projectPhotos.slice(0, 2),
+        teamMembers: project.members && project.memberProfilePhotos && project.memberLinkedinUrls ? {
+          names: project.members,
+          photos: project.memberProfilePhotos,
+          linkedinUrls: project.memberLinkedinUrls
+        } : undefined
       };
     }
     return null;
@@ -99,6 +111,11 @@ ${hackathon.members ? `Team Members: ${hackathon.members.join(", ")}` : ""}`,
       const lowercaseInput = inputText.toLowerCase();
       let response = predefinedResponses.default;
       let images: string[] = [];
+      let teamMembers: {
+        names: string[];
+        photos: string[];
+        linkedinUrls: string[];
+      } | undefined = undefined;
 
       // Enhanced keyword matching with image support
       if (lowercaseInput.includes("skill") || lowercaseInput.includes("technology") || lowercaseInput.includes("tech")) {
@@ -125,6 +142,7 @@ ${hackathon.members ? `Team Members: ${hackathon.members.join(", ")}` : ""}`,
         if (projectResult) {
           response = projectResult.text;
           images = projectResult.images;
+          teamMembers = projectResult.teamMembers;
         } else {
           // Specific Hackathon Matching using helper function
           const hackathonResult = getHackathonDetails(lowercaseInput);
@@ -141,6 +159,7 @@ ${hackathon.members ? `Team Members: ${hackathon.members.join(", ")}` : ""}`,
         sender: "bot",
         timestamp: new Date(),
         images: images.length > 0 ? images : undefined,
+        teamMembers: teamMembers,
       };
 
       setMessages((prev) => [...prev, botMessage]);
@@ -273,6 +292,58 @@ ${hackathon.members ? `Team Members: ${hackathon.members.join(", ")}` : ""}`,
                                         target.style.display = 'none';
                                       }}
                                     />
+                                  </motion.div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                          
+                          {/* Display Team Members */}
+                          {message.teamMembers && message.teamMembers.names.length > 0 && (
+                            <div className="mt-4">
+                              <h4 className="text-sm font-semibold mb-3 text-blue-600 dark:text-blue-400">
+                                👥 Team Members:
+                              </h4>
+                              <div className="flex flex-wrap gap-3">
+                                {message.teamMembers.names.map((name, index) => (
+                                  <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                                    className="text-center"
+                                  >
+                                    <motion.button
+                                      onClick={() => {
+                                        if (message.teamMembers?.linkedinUrls[index]) {
+                                          window.open(message.teamMembers.linkedinUrls[index], '_blank');
+                                        }
+                                      }}
+                                      className="block hover:scale-105 transition-transform duration-200"
+                                      whileHover={{ scale: 1.05 }}
+                                      whileTap={{ scale: 0.95 }}
+                                      title={`Connect with ${name} on LinkedIn`}
+                                    >
+                                      <div className="relative">
+                                        <Image
+                                          src={message.teamMembers?.photos[index] || '/assets/images/default-avatar.png'}
+                                          alt={`${name} profile photo`}
+                                          width={50}
+                                          height={50}
+                                          className="w-12 h-12 rounded-full object-cover border-2 border-blue-200 dark:border-blue-700 hover:border-blue-400 dark:hover:border-blue-500 transition-colors"
+                                          onError={(e) => {
+                                            const target = e.target as HTMLImageElement;
+                                            target.src = '/assets/images/default-avatar.png';
+                                          }}
+                                        />
+                                        <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
+                                          <span className="text-white text-xs">💼</span>
+                                        </div>
+                                      </div>
+                                    </motion.button>
+                                    <p className="text-xs mt-1 text-center max-w-[60px] truncate" title={name}>
+                                      {name.split(' ')[0]}
+                                    </p>
                                   </motion.div>
                                 ))}
                               </div>

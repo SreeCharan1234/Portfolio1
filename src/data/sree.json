@@ -41,51 +41,27 @@
     {
       "degree": "Bachelor of Technology",
       "field": "Computer Science Engineering",
-      "institution": "Lovely Professional University",
+      "institution": "Your University Name",
       "years": "2022 - 2026",
-      "location": "Punjab, India",
-      "grade": "8.0 CGPA",
-      "achievements": ["Dean's List for Academic Excellence", "Winner of Inter-College Coding Competition", "Published research paper on Web Technologies"]
+      "location": "Your City, India",
+      "grade": "9.0 CGPA",
+      "achievements": ["Dean's List for Academic Excellence", "President of Computer Science Club", "Winner of Inter-College Coding Competition", "Published research paper on Web Technologies"]
     },
     {
       "qualification": "Senior Secondary (12th)",
       "field": "Science (PCM)",
-      "institution": "Kendriya Vidyalaya",
-      "years": "2020 - 2022",
-      "location": "Delhi, India",
-      "grade": "80.82%",
-      "achievements": ["School Topper in Computer Science", "State Level Mathematics Olympiad Participant"]
+      "institution": "Your School Name",
+      "years": "2021 - 2022",
+      "location": "Your City, India",
+      "grade": "81.82%",
+      "achievements": ["School Topper in Computer Science", "State Level Mathematics Olympiad Participant", "Science Club Secretary"]
     }
   ],
   "certifications": [
-    {
-      "name": "LeetCode Problem Solving",
-      "issuer": "LeetCode",
-      "year": "2024",
-      "id": "LC-SOLVER-500+",
-      "description": "Solved 500+ coding problems across various difficulty levels",
-      "badge": "Knight (1800+ rating)"
-    },
-    {
-      "name": "Data Structures & Algorithms",
-      "issuer": "LeetCode Premium",
-      "year": "2024",
-      "id": "LC-DSA-MASTER",
-      "description": "Mastered advanced algorithms and data structure patterns",
-      "badge": "Algorithm Specialist"
-    },
-    {
-      "name": "Python for Data Science",
-      "issuer": "IBM",
-      "year": "2023",
-      "id": "IBM-PY-456"
-    },
-    {
-      "name": "Full Stack Web Development",
-      "issuer": "Coursera",
-      "year": "2023",
-      "id": "COURSERA-FS-321"
-    }
+    { "name": "AWS Cloud Practitioner", "issuer": "Amazon Web Services", "year": "2024", "id": "AWS-CCP-12345" },
+    { "name": "React Developer Certification", "issuer": "Meta (Facebook)", "year": "2024", "id": "META-REACT-789" },
+    { "name": "Python for Data Science", "issuer": "IBM", "year": "2023", "id": "IBM-PY-456" },
+    { "name": "Full Stack Web Development", "issuer": "Coursera", "year": "2023", "id": "COURSERA-FS-321" }
   ],
   "skills": {
     "frontend": {
@@ -133,67 +109,127 @@
       "C++": "65%"
     }
   },
+  "proficiencyLegend": {
+    "Expert": "90%+",
+    "Advanced": "80-89%",
+    "Intermediate": "70-79%",
+    "Beginner": "60-69%"
+  },
   "projects": [
     {
       "name": "AgriVision",
       "category": "Full Stack",
-      "description": "A comprehensive agricultural platform with AI-powered crop detection, growth monitoring, and market insights.",
+      "description": "A comprehensive agricultural platform with AI‑powered crop detection, growth monitoring, and market insights.",
       "duration": "3 months",
       "teamSize": 4,
-      "members": ["K Sree Charan", "Bighnesh Kumar Sahoo", "Shubham Pandey", "Sarthak Awasthi"],
-      "projectPhotos": [
-        "/assets/images/projects/agrivision/apiofondemand.png",
-        "/assets/images/projects/agrivision/cropdetails.png",
-        "/assets/images/projects/agrivision/ecosystem.png",
-        "/assets/images/projects/agrivision/landingpage.png",
-        "/assets/images/projects/agrivision/plantai.png",
-        "/assets/images/projects/agrivision/plantfind.png",
-        "/assets/images/projects/agrivision/plantgrpth.png",
-        "/assets/images/projects/agrivision/seasibak cropPlanner.png",
-        "/assets/images/projects/agrivision/voicetotext.png"
+      "Members" : ["K Sree Charan", "Bighnesh Kumar Sahoo", "Shubham Pandey", "Sarthak Awasthi"],    
+      "Project_photo" : [
+        "projects/agrivision/apiofondemand.png",
+        "projects/agrivision/cropdetails.png",
+        "projects/agrivision/ecosystem.png",
+        "projects/agrivision/landingpage.png",
+        "projects/agrivision/plantai.png",
+        "projects/agrivision/plantfind.png",
+        "projects/agrivision/plantgrpth.png",
+        "projects/agrivision/seasibak cropPlanner.png",
+        "projects/agrivision/voicetotext.png"
       ],
       "githubLink": "https://github.com/yourusername/agri-vision",
-      "technologies": ["React", "Node.js", "Python", "AI/ML", "TensorFlow"],
-      "features": ["AI-powered plant disease detection", "Crop growth monitoring", "Market price predictions", "Voice-to-text functionality", "Crop planning system"]
+      "technologies": ["React", "Node.js", "Python", "and more"],
+      "features": ["AI‑powered plant disease detection", "Crop growth monitoring", "Market price predictions"]
     },
     {
       "name": "Health Buddy",
       "category": "Healthcare",
-      "description": "Heart Disease Prediction and Notification System - A comprehensive medical alert system that predicts the risk of heart disease using advanced machine learning techniques and agent-based message passing.",
+      "description": "Heart Disease Prediction and Notification System - A comprehensive medical alert system that predicts the risk of heart disease using advanced machine learning techniques and agent-based message passing. The system evaluates patient health data for potential heart disease risks and automates the process of delivering results to patients via email notifications.",
       "duration": "4 months",
       "teamSize": 3,
-      "projectPhotos": [
-        "/assets/images/projects/health-buddy/dashbord.png",
-        "/assets/images/projects/health-buddy/login.png",
-        "/assets/images/projects/health-buddy/heartdiseasePrediction.jpg",
-        "/assets/images/projects/health-buddy/nearbyhospitals.png"
+      "Project_photo": [
+        "projects/health-buddy/1.jpg",
+        "projects/health-buddy/2.jpg",
+        "projects/health-buddy/3.jpg",
+        "projects/health-buddy/4.jpg",
+        "projects/health-buddy/5.jpg",
+        "projects/health-buddy/6.jpg",
+        "projects/health-buddy/7.jpg",
+        "projects/health-buddy/8.jpg",
+        "projects/health-buddy/9.jpg",
+        "projects/health-buddy/10.jpg",
+        "projects/health-buddy/dashbord.png",
+        "projects/health-buddy/heartdiseasePrediction.jpg",
+        "projects/health-buddy/login.png",
+        "projects/health-buddy/nearbychemit.png",
+        "projects/health-buddy/nearbyhospitals.png",
+        "projects/health-buddy/nearbymedicines.png"
       ],
       "githubLink": "https://github.com/SreeCharan1234/health-buddy",
       "deploymentLink": "https://health-buddy.streamlit.app/",
-      "linkedinPost": "https://www.linkedin.com/posts/sreecharan1234/health-buddy-healthcare",
-      "technologies": ["Python", "Machine Learning", "uAgents Framework", "Joblib", "Pandas", "Mailjet API", "Streamlit"],
+      "linkdin post ": "https://www.linkedin.com/posts/sreecharan1234_healthbuddy-healthcare-activity-1234567890",
+      "technologies": ["React", "Node.js", "Machine Learning", "uAgents Framework", "Joblib", "Pandas", "Mailjet API", "Python"],
       "features": [
         "AI-powered heart disease prediction using ML models",
-        "Agent-based interaction with automated notification system",
+        "Agent-based interaction with automated notification system", 
         "Email alerts for immediate patient notification",
         "Secure data privacy through agent communication",
-        "Early detection system for preventive healthcare"
-      ]
+        "Early detection system for preventive healthcare",
+        "Scalable architecture for handling multiple patients"
+      ],
+      "projectDetails": {
+        "overview": "This project is a medical alert system that predicts the risk of heart disease and notifies the patient via email. Using advanced machine learning techniques and agent-based message passing, this system evaluates a patient's health data for potential heart disease risks and automates the process of delivering this result to the patient.",
+        "importance": "Heart disease remains a leading cause of death worldwide, and early diagnosis is critical for effective treatment. This project leverages machine learning to assess a user's health indicators, potentially identifying early signs of heart disease.",
+        "problemsAddressed": [
+          "Agent-Based Interaction: Creates distributed architecture where each agent has specific roles",
+          "Automated Notification: Eliminates manual notification delays and errors",
+          "Data Privacy: Secure communication between agents with minimal data exposure",
+          "Scalability: Easy addition of new agents without overloading existing structure"
+        ],
+        "technicalComponents": {
+          "agents": {
+            "alice": "Prediction Agent - Handles heart disease risk prediction using trained ML model",
+            "bob": "Notification Agent - Manages email notification delivery to patients"
+          },
+          "dataCollection": "Collects key patient information: age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal",
+          "predictionModel": "Uses pre-trained model (heart_new.pkl) to predict heart disease risk",
+          "notification": "Automated email system using Mailjet API for patient alerts"
+        },
+        "benefits": [
+          "Early Detection: Helps in early detection of heart disease, potentially saving lives",
+          "Healthcare Efficiency: Reduces manual work for healthcare providers",
+          "Patient Convenience: Direct email notifications without manual checking",
+          "Enhanced Security: Secure agent-based data sharing for healthcare applications"
+        ],
+        "futureEnhancements": [
+          "Multi-Agent Communication for additional functionalities",
+          "Data Visualization with graphs and charts",
+          "Mobile App Integration for real-time notifications",
+          "Extended Health Monitoring for broader diagnoses"
+        ]
+      }
     },
     {
       "name": "Study Buddy",
       "category": "Education",
-      "description": "An educational platform with coding challenges, roadmaps, and peer-to-peer learning features.",
+      "description": "An educational platform with coding challenges, roadmaps, and peer‑to‑peer learning features.",
       "duration": "2 months",
       "teamSize": 2,
-      "projectPhotos": [
-        "/assets/images/projects/study-buddy/dashboard.png",
-        "/assets/images/projects/study-buddy/codeeditor.png",
-        "/assets/images/projects/study-buddy/1 vs 1.png",
-        "/assets/images/projects/study-buddy/roadmap.png"
+      "Project_photo": [
+        "projects/study-buddy/1 vs 1.png",
+        "projects/study-buddy/1 vs 1 2.png",
+        "projects/study-buddy/1 vs 1 3.htm",
+        "projects/study-buddy/1 vs 1 4.png",
+        "projects/study-buddy/1vs1 1.png",
+        "projects/study-buddy/code editor 2.png",
+        "projects/study-buddy/codeeditor.png",
+        "projects/study-buddy/dashboard.png",
+        "projects/study-buddy/leetcode.png",
+        "projects/study-buddy/linkedin.htm",
+        "projects/study-buddy/roadmap.png",
+        "projects/study-buddy/Screenshot 2025-01-11 122732.png",
+        "projects/study-buddy/signup.png",
+        "projects/study-buddy/testyourself1.png"
       ],
-      "technologies": ["React", "Node.js", "Socket.io", "MongoDB", "Judge0 API"],
-      "features": ["Interactive coding challenges", "Learning roadmaps", "1v1 coding competitions", "Real-time code editor"]
+      "technologies": ["React", "Node.js", "Socket.io", "and more"],
+      "features": ["Interactive coding challenges", "Learning roadmaps", "1v1 coding competitions"]
     },
     {
       "name": "Sarthi",
@@ -201,25 +237,37 @@
       "description": "A comprehensive logistics and transportation management system with payment integration.",
       "duration": "3 months",
       "teamSize": 4,
-      "projectPhotos": [
-        "/assets/images/projects/sarthi/home.png",
-        "/assets/images/projects/sarthi/paymentgateway.png"
+      "Project_photo": [
+        "projects/sarthi/aboutus.png",
+        "projects/sarthi/feedback.png",
+        "projects/sarthi/home.png",
+        "projects/sarthi/paymentgateway.png",
+        "projects/sarthi/pikle.png",
+        "projects/sarthi/razor pay.png",
+        "projects/sarthi/work.png"
       ],
-      "technologies": ["React", "Node.js", "Razorpay", "MongoDB"],
-      "features": ["Real-time tracking", "Payment gateway integration", "Route optimization"]
+      "technologies": ["React", "Node.js", "Razorpay", "and more"],
+      "features": ["Real‑time tracking", "Payment gateway integration", "Route optimization"]
     },
     {
-      "name": "Surasksha Suchak",
+      "name": "Suraksha Suchak",
       "category": "Security",
       "description": "A security monitoring and alert system for enhanced safety and surveillance.",
       "duration": "5 months",
       "teamSize": 5,
-      "projectPhotos": [
-        "/assets/images/projects/surasksha-suchak/1.png",
-        "/assets/images/projects/surasksha-suchak/2.png"
+      "Project_photo": [
+        "projects/surasksha-suchak/1.jpg",
+        "projects/surasksha-suchak/2.jpg",
+        "projects/surasksha-suchak/3.jpg",
+        "projects/surasksha-suchak/4.jpg",
+        "projects/surasksha-suchak/5.jpg",
+        "projects/surasksha-suchak/6.jpg",
+        "projects/surasksha-suchak/7.jpg",
+        "projects/surasksha-suchak/8.jpg"
       ],
-      "technologies": ["React", "Node.js", "WebRTC", "Computer Vision"],
-      "features": ["Real-time video monitoring", "Automatic threat detection", "Emergency alert system"]
+        
+      "technologies": ["React", "Node.js", "WebRTC", "and more"],
+      "features": ["Real‑time video monitoring", "Automatic threat detection", "Emergency alert system"]
     },
     {
       "name": "Code Off Duty",
@@ -227,12 +275,25 @@
       "description": "A competitive programming platform with contests, leaderboards, and skill assessments.",
       "duration": "4 months",
       "teamSize": 3,
-      "projectPhotos": [
-        "/assets/images/projects/code-off-duty/1.png",
-        "/assets/images/projects/code-off-duty/2.png"
+      "Project_photo": [
+        "projects/code-off-duty/1.png",
+        "projects/code-off-duty/2.png",
+        "projects/code-off-duty/3.png",
+        "projects/code-off-duty/4.png",
+        "projects/code-off-duty/5.png",
+        "projects/code-off-duty/6.png",
+        "projects/code-off-duty/7.png",
+        "projects/code-off-duty/8.png",
+        "projects/code-off-duty/9.png",
+        "projects/code-off-duty/10.png",
+        "projects/code-off-duty/11.png",
+        "projects/code-off-duty/12.png",
+        "projects/code-off-duty/13.png",
+        "projects/code-off-duty/14.png",
+        "projects/code-off-duty/15.png"
       ],
-      "technologies": ["React", "Node.js", "Judge0 API", "MongoDB"],
-      "features": ["Online code execution", "Contest management", "Real-time leaderboards"]
+      "technologies": ["React", "Node.js", "Judge0 API", "and more"],
+      "features": ["Online code execution", "Contest management", "Real‑time leaderboards"]
     }
   ],
   "hackathons": {
@@ -247,38 +308,78 @@
         "monthYear": "November 2023",
         "host": "Google Developer Community",
         "teamSize": 4,
-        "eventPhotos": [
-          "/assets/images/hackathons/devfest/1.jpg",
-          "/assets/images/hackathons/devfest/2.jpg"
-        ],
+        "event_photos": ["devfest_presentation.jpg", "devfest_demo.jpg", "devfest_award.jpg"],
+        "team_photos": ["devfest_team1.jpg", "devfest_team2.jpg", "devfest_team3.jpg", "devfest_team4.jpg"],
         "technologies": ["React", "Node.js", "AI/ML", "IoT"],
         "awards": ["Best Innovation Award", "People's Choice Award", "₹50,000 Prize Money"]
       },
       {
-        "event": "Microsoft Hackathon",
+        "event": "Microsoft Hackathon  OR  Code Cubicle ",
         "result": "Winners",
         "monthYear": "October 2023",
         "host": "Microsoft India",
         "teamSize": 4,
-        "eventPhotos": [
-          "/assets/images/hackathons/microsoft/1.jpg",
-          "/assets/images/hackathons/microsoft/2.jpg"
+        "event_photos": [
+          "hackathons/microsoft/1.jpg",
+          "hackathons/microsoft/2.jpg",
+          "hackathons/microsoft/3.jpg",
+          "hackathons/microsoft/4.jpg",
+          "hackathons/microsoft/5.jpg",
+          "hackathons/microsoft/6.jpg",
+          "hackathons/microsoft/7.jpg",
+          "hackathons/microsoft/main.jpg"
         ],
-        "members": ["K Sree Charan", "Shivani", "Sushil", "Abhishek Kumar"],
+        
+        "members": ["Ksreecharan", "Shivani", "Sushil", "Abhishek Kumar"],
+        "member_profile_photos": [
+          "member-photoes/Ksreecharan.jpg",
+          "member-photoes/Shivani.jpg",
+          "member-photoes/Sushil.jpg",
+          "member-photoes/Abhishek Kumar.jpg"
+        ],
+        "member_linkedin_urls": [
+          "https://www.linkedin.com/in/sree9484/",
+          "https://www.linkedin.com/in/satapathy-28-shivani/",
+          "https://www.linkedin.com/in/sushil-verma-/",
+          "https://www.linkedin.com/in/abhishekkumar9870/"
+        ],
         "technologies": ["Azure", "React", "C#.NET"],
         "awards": ["2nd Place Winner", "Azure Credits Worth ₹25,000", "Microsoft Certification"]
       },
       {
         "event": "Kriyeta 3.0",
-        "result": "Placed in Top 4",
+        "result": "Placed in Top 4 ",
         "monthYear": "September 2023",
         "host": "Technical Festival",
         "teamSize": 5,
-        "eventPhotos": [
-          "/assets/images/hackathons/kriyeta3.0/1.jpg",
-          "/assets/images/hackathons/kriyeta3.0/2.jpg"
+        "event_photos": [
+          "hackathons/kriyeta3.0/1.jpg",
+          "hackathons/kriyeta3.0/2.jpg",
+          "hackathons/kriyeta3.0/3.jpg",
+          "hackathons/kriyeta3.0/4.jpg",
+          "hackathons/kriyeta3.0/5.jpg",
+          "hackathons/kriyeta3.0/6.jpg",
+          "hackathons/kriyeta3.0/7.jpg",
+          "hackathons/kriyeta3.0/8.jpg",
+          "hackathons/kriyeta3.0/main.jpg"
         ],
-        "members": ["K Sree Charan", "Shivani", "Sushil", "Abhishek Kumar", "Shubham"],
+        
+
+        "members": ["Ksreecharan", "Shivani", "Sushil", "Abhishek Kumar", "Shubham"],
+        "member_profile_photos": [
+          "member-photoes/Ksreecharan.jpg",
+          "member-photoes/Shivani.jpg",
+          "member-photoes/Sushil.jpg",
+          "member-photoes/Abhishek Kumar.jpg",
+          "member-photoes/Shubham.jpg"
+        ],
+        "member_linkedin_urls": [
+          "https://www.linkedin.com/in/sree9484/",
+          "https://www.linkedin.com/in/satapathy-28-shivani/",
+          "https://www.linkedin.com/in/sushil-verma-/",
+          "https://www.linkedin.com/in/abhishekkumar9870/",
+          "https://www.linkedin.com/in/shubhampandey777/"
+        ],
         "technologies": ["IoT", "Python", "React", "MongoDB"],
         "awards": ["Overall Winners", "Best Technical Implementation", "₹30,000 Prize Money"]
       },
@@ -287,12 +388,28 @@
         "result": "1st Place – Web Development Challenge",
         "monthYear": "August 2023",
         "host": "Tech Community",
-        "teamSize": 4,
-        "eventPhotos": [
-          "/assets/images/hackathons/build-a-thon/2.jpg",
-          "/assets/images/hackathons/build-a-thon/3.jpg"
+        "teamSize": 2,
+        "event_photos": [
+          "hackathons/build-a-thon/1717163413765.jpg",
+          "hackathons/build-a-thon/2.jpg",
+          "hackathons/build-a-thon/3.jpg",
+          "hackathons/build-a-thon/4.jpg",
+          "hackathons/build-a-thon/5.jpg"
         ],
-        "members": ["K Sree Charan", "Abhishek Kumar", "Sushil", "Shubham"],
+        
+        "members": ["ksreecharan", "Abhishek Kumar", "Sushil", "Shubham"],
+        "member_profile_photos": [
+          "member-photoes/Ksreecharan.jpg",
+          "member-photoes/Abhishek Kumar.jpg",
+          "member-photoes/Sushil.jpg",
+          "member-photoes/Shubham.jpg"
+        ],
+        "member_linkedin_urls": [
+          "https://www.linkedin.com/in/sree9484/",
+          "https://www.linkedin.com/in/abhishekkumar9870/",
+          "https://www.linkedin.com/in/sushil-verma-/",
+          "https://www.linkedin.com/in/shubhampandey777/"
+        ],
         "technologies": ["Next.js", "Node.js", "Stripe", "MongoDB"],
         "awards": ["1st Place", "Best UI/UX Design", "Mentorship Program"]
       },
@@ -301,11 +418,26 @@
         "result": "Winner",
         "monthYear": "October 2022",
         "host": "Online Event",
-        "teamSize": 5,
-        "eventPhotos": [
-          "/assets/images/hackathons/code-a-haunt/main.jpg"
+        "teamSize": 4,
+        "event_photos": [
+          "hackathons/code-a-haunt/main.jpg"
         ],
-        "members": ["K Sree Charan", "Abhishek Kumar", "Sushil", "Shubham", "Hardik"],
+        
+        "members": ["ksreecharan", "Abhishek Kumar", "Sushil", "Shubham", "Hardik"],
+        "member_profile_photos": [
+          "member-photoes/Ksreecharan.jpg",
+          "member-photoes/Abhishek Kumar.jpg",
+          "member-photoes/Sushil.jpg",
+          "member-photoes/Shubham.jpg",
+          "member-photoes/Hardik.jpg"
+        ],
+        "member_linkedin_urls": [
+          "https://www.linkedin.com/in/sree9484/",
+          "https://www.linkedin.com/in/abhishekkumar9870/",
+          "https://www.linkedin.com/in/sushil-verma-/",
+          "https://www.linkedin.com/in/shubhampandey777/",
+          "https://www.linkedin.com/in/hardikarorah/"
+        ],
         "technologies": ["JavaScript", "HTML/CSS", "Animation"],
         "awards": ["Top 10 Finalist", "Creative Coding Award", "Community Recognition"]
       },
@@ -314,12 +446,29 @@
         "result": "Top Performer – Competitive Programming",
         "monthYear": "March 2023",
         "host": "Arena",
-        "teamSize": 4,
-        "eventPhotos": [
-          "/assets/images/hackathons/arena/1.jpg",
-          "/assets/images/hackathons/arena/2.jpg"
+        "teamSize":4,
+        "event_photos": [
+          "hackathons/arena/1.jpg",
+          "hackathons/arena/2.jpg",
+          "hackathons/arena/3.jpg",
+          "hackathons/arena/4.jpg",
+          "hackathons/arena/5.jpg",
+          "hackathons/arena/main.jpg"
         ],
-        "members": ["K Sree Charan", "Rehan", "Amit", "Aman"],
+        
+        "members": ["ksreecharan", "Rehan", "Amit", "Aman"],
+        "member_profile_photos": [
+          "member-photoes/Ksreecharan.jpg",
+          "member-photoes/Rehan.jpg",
+          "member-photoes/Amit.jpg",
+          "member-photoes/Aman.jpg"
+        ],
+        "member_linkedin_urls": [
+          "https://www.linkedin.com/in/sree9484/",
+          "https://www.linkedin.com/in/rehanmittal/",
+          "https://www.linkedin.com/in/amit-gupta-1011a4253/",
+          "https://www.linkedin.com/in/aman-kumar-16j/"
+        ],
         "technologies": ["C++", "Algorithms", "Data Structures"],
         "awards": ["Top 50 Performers", "Problem Solving Excellence", "Certificate of Merit"]
       },
@@ -328,12 +477,31 @@
         "result": "Winner – Competitive Programming Championship",
         "monthYear": "December 2023",
         "host": "University Competition",
-        "teamSize": 5,
-        "eventPhotos": [
-          "/assets/images/hackathons/code-of-duty/1.jpg",
-          "/assets/images/hackathons/code-of-duty/2.jpg"
+        "teamSize": 1,
+        "event_photos": [
+          "hackathons/code-of-duty/1.jpg",
+          "hackathons/code-of-duty/2.jpg",
+          "hackathons/code-of-duty/3.jpg",
+          "hackathons/code-of-duty/4.jpg",
+          "hackathons/code-of-duty/5.jpg",
+          "hackathons/code-of-duty/main.jpg"
         ],
-        "members": ["K Sree Charan", "Ritik", "Shubham Kumar", "Shafe", "Amit"],
+        
+        "members": ["ksreecharan", "Ritik", "Shubham Kumar", "Shafe", "Amit"],
+        "member_profile_photos": [
+          "member-photoes/Ksreecharan.jpg",
+          "member-photoes/Ritik.jpg",
+          "member-photoes/Shubham Kumar.jpg",
+          "member-photoes/Shafe.jpg",
+          "member-photoes/Amit.jpg"
+        ],
+        "member_linkedin_urls": [
+          "https://www.linkedin.com/in/sree9484/",
+          "https://www.linkedin.com/in/ritikkumar34/",
+          "https://www.linkedin.com/in/ks963/",
+          "https://www.linkedin.com/in/shafe12/",
+          "https://www.linkedin.com/in/amit-gupta-1011a4253/"
+        ],
         "technologies": ["C++", "Algorithms", "Data Structures", "Dynamic Programming"],
         "awards": ["Championship Winner", "Fastest Solution Award", "₹15,000 Prize Money"]
       },
@@ -342,12 +510,27 @@
         "result": "2nd Place – Web Development Challenge",
         "monthYear": "January 2023",
         "host": "Lovely Professional University",
-        "teamSize": 4,
-        "eventPhotos": [
-          "/assets/images/hackathons/codingblockslpu/1.jpg",
-          "/assets/images/hackathons/codingblockslpu/2.jpg"
+        "teamSize": 3,
+        "event_photos": [
+          "hackathons/codingblockslpu/1.jpg",
+          "hackathons/codingblockslpu/2.jpg",
+          "hackathons/codingblockslpu/3.jpg",
+          "hackathons/codingblockslpu/main.jpg"
         ],
-        "members": ["K Sree Charan", "Ritik", "Shafe", "Abhishek"],
+        
+        "members": ["ksreecharan", "Ritik", "Shafe", "Abhishek"],
+        "member_profile_photos": [
+          "member-photoes/Ksreecharan.jpg",
+          "member-photoes/Ritik.jpg",
+          "member-photoes/Shafe.jpg",
+          "member-photoes/Abhishek Kumar.jpg"
+        ],
+        "member_linkedin_urls": [
+          "https://www.linkedin.com/in/sree9484/",
+          "https://www.linkedin.com/in/ritikkumar34/",
+          "https://www.linkedin.com/in/shafe12/",
+          "https://www.linkedin.com/in/abhishekkumar9870/"
+        ],
         "technologies": ["React", "Node.js", "MongoDB", "Express.js"],
         "awards": ["2nd Place Winner", "Best Backend Implementation", "Internship Opportunity"]
       }
@@ -356,7 +539,7 @@
   "contact": {
     "email": "sreecharan9484@gmail.com",
     "phone": "+91 9876543210",
-    "location": "Noida, India"
+    "location": "Noida, India "
   },
   "footer": "© 2025 K Sree Charan. Built with Next.js and Tailwind CSS."
 }
