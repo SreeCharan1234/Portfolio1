@@ -8,7 +8,7 @@ const Experience = () => {
     {
       title: "Full Stack Developer",
       company: "MAQ Software Solutions",
-      location: "Hyderabad, India",
+      location: "Delhi, India",
       period: "2023 - Present",
       type: "Full-time",
       description: [
